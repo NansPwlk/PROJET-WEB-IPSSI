@@ -4,7 +4,9 @@
     --color-salmon: #f87171;
     --color-orange: #f59e0b;
     --color-gray: #4b5563;
-    --color-border: #e5e7eb;
+    --color-success: #10b981;
+    --color-error: #ef4444;
+    --color-warning: #f59e0b;
 }
 
 /* Reset et styles de base */
@@ -12,75 +14,203 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
-    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #f5f5f5;
+    position: relative;
+    overflow-x: hidden;
+    padding: 2rem 0;
 }
 
-/* Conteneur du formulaire */
-.form-container {
+/* Fond pointillé */
+.dotted-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(var(--color-purple) 1px, transparent 1px);
+    background-size: 10px 10px;
+    opacity: 0.1;
+    animation: fadeIn 1s ease-in;
+}
+
+/* Conteneurs principaux */
+.login-container,
+.register-container {
     background: white;
-    padding: 2rem;
+    padding: 2.5rem;
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 400px;
+    animation: slideUp 0.5s ease-out;
     position: relative;
     z-index: 1;
 }
 
-/* Conteneur du logo */
+.login-container {
+    max-width: 400px;
+}
+
+.register-container {
+    max-width: 500px;
+}
+
+/* Logo */
 .logo-container {
     text-align: center;
     margin-bottom: 2rem;
 }
 
-/* Style du logo */
-.logo {
-    max-width: 200px;
+.logo-container img {
+    width: 200px;
     height: auto;
-    display: inline-block;
+    animation: fadeIn 1s ease-in;
 }
 
-/* Groupe de champs */
+/* Mise en page en colonnes */
+.row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.col {
+    flex: 1;
+}
+
+/* Groupes de champs */
 .input-group {
     margin-bottom: 1.5rem;
     position: relative;
 }
 
-/* Labels */
-label {
+.input-group label {
     display: block;
     margin-bottom: 0.5rem;
     color: var(--color-gray);
     font-weight: 500;
 }
 
-/* Champs de saisie */
-input {
+/* Styles des inputs et select */
+.input-group input,
+.input-group select {
     width: 100%;
     padding: 0.75rem;
-    border: 2px solid var(--color-border);
+    border: 2px solid #e5e7eb;
     border-radius: 8px;
     font-size: 1rem;
     transition: all 0.3s ease;
 }
 
-input:focus {
+.input-group input:focus,
+.input-group select:focus {
     outline: none;
     border-color: var(--color-purple);
     box-shadow: 0 0 0 3px rgba(107, 70, 193, 0.1);
 }
 
-/* Bouton */
-button {
+/* Styles spécifiques pour select */
+select {
+    appearance: none;
+    background-color: white;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%234b5563' viewBox='0 0 16 16'%3E%3Cpath d='M8 10l4-4H4l4 4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+}
+
+/* Messages d'erreur */
+.error-message {
+    color: var(--color-error);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: none;
+}
+
+/* Étapes du formulaire */
+.form-step {
+    transition: opacity 0.3s ease;
+}
+
+/* Container du mot de passe */
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    z-index: 2;
+}
+
+/* Barre de force du mot de passe */
+.password-strength {
+    margin-top: 0.5rem;
+}
+
+.strength-bar {
+    height: 4px;
+    background-color: #e5e7eb;
+    border-radius: 2px;
+    margin: 5px 0;
+}
+
+.strength-progress {
+    height: 100%;
+    width: 0;
+    border-radius: 2px;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.strength-text {
+    font-size: 0.75rem;
+    color: var(--color-gray);
+}
+
+/* Critères du mot de passe */
+.password-requirements {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.requirement {
+    color: var(--color-gray);
+    margin: 0.2rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.requirement::before {
+    content: "•";
+    color: #9ca3af;
+}
+
+.requirement.valid {
+    color: var(--color-success);
+}
+
+.requirement.valid::before {
+    content: "✓";
+}
+
+/* Boutons */
+.login-button,
+.register-button,
+.next-button {
     width: 100%;
     padding: 0.75rem;
     background: linear-gradient(45deg, var(--color-purple), var(--color-salmon), var(--color-orange));
@@ -93,24 +223,195 @@ button {
     transition: transform 0.2s ease;
 }
 
-button:hover {
+.back-button {
+    width: 100%;
+    padding: 0.75rem;
+    background: white;
+    color: var(--color-gray);
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* Liens */
+.forgot-password {
+    text-align: right;
+    margin-bottom: 1.5rem;
+}
+
+.login-link,
+.register-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--color-gray);
+    font-size: 0.875rem;
+}
+
+.forgot-password a,
+.login-link a,
+.register-link a {
+    color: var(--color-purple);
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
+}
+
+/* Captcha */
+.captcha-container {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.captcha-initial {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+}
+
+.captcha-checkbox {
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    font-size: 1rem;
+    user-select: none;
+    display: flex;
+    align-items: center;
+}
+
+.captcha-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #fff;
+    border: 2px solid #e5e7eb;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.captcha-checkbox:hover input ~ .checkmark {
+    border-color: var(--color-purple);
+}
+
+.captcha-checkbox input:checked ~ .checkmark {
+    background-color: var(--color-purple);
+    border-color: var(--color-purple);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.captcha-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.captcha-challenge {
+    margin-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 1rem;
+}
+
+/* États des boutons */
+button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+button:not(:disabled):hover {
     transform: translateY(-2px);
 }
 
-button:active {
+button:not(:disabled):active {
     transform: translateY(0);
 }
 
-/* Arrière-plan pointillé */
-.dotted-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(var(--color-purple) 1px, transparent 1px);
-    background-size: 10px 10px;
-    opacity: 0.1;
-    pointer-events: none;
-    z-index: 0;
+/* Animations */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Media queries */
+@media (max-width: 640px) {
+    body {
+        padding: 1rem;
+    }
+
+    .row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .login-container,
+    .register-container {
+        padding: 1.5rem;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+}
+
+/* États de validation */
+.input-group input:invalid:not(:placeholder-shown) {
+    border-color: var(--color-error);
+}
+
+.input-group input:valid:not(:placeholder-shown) {
+    border-color: var(--color-success);
+}
+
+.input-group input:focus:invalid {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.input-group input:focus:valid {
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzeo - Inscription</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dotted-bg"></div>
+    <div class="register-container">
+        <div class="logo-container">
+            <img src="assets/logo.png" alt="Quizzeo Logo">
+        </div>
+        <form id="registerForm">
+            <!-- Première partie: Informations personnelles -->
+            <div class="form-step" id="step1">
+                <div class="row">
+                    <div class="col">
+                        <div class="input-group">
+                            <label for="firstname">Prénom</label>
+                            <input type="text" id="firstname" name="firstname" required>
+                            <div class="error-message" id="firstname-error"></div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group">
+                            <label for="lastname">Nom</label>
+                            <input type="text" id="lastname" name="lastname" required>
+                            <div class="error-message" id="lastname-error"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error-message" id="email-error"></div>
+                </div>
+
+                <div class="input-group">
+                    <label for="role">Rôle</label>
+                    <select id="role" name="role" required>
+                        <option value="">Sélectionnez un rôle</option>
+                        <option value="ecole">École</option>
+                        <option value="entreprise">Entreprise</option>
+                        <option value="utilisateur">Simple Utilisateur</option>
+                    </select>
+                    <div class="error-message" id="role-error"></div>
+                </div>
+
+                <button type="button" class="next-button">Suivant</button>
+            </div>
+
+            <!-- Deuxième partie: Mot de passe -->
+            <div class="form-step" id="step2" style="display: none;">
+                <div class="input-group">
+                    <label for="password">Mot de passe</label>
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" required>
+                        <button type="button" class="toggle-password">👁️</button>
+                    </div>
+                    <div class="password-strength">
+                        <div class="strength-bar">
+                            <div class="strength-progress"></div>
+                        </div>
+                        <span class="strength-text">Force du mot de passe</span>
+                    </div>
+                    <div class="password-requirements">
+                        <p class="requirement" data-requirement="length">8 caractères minimum</p>
+                        <p class="requirement" data-requirement="uppercase">1 majuscule</p>
+                        <p class="requirement" data-requirement="lowercase">1 minuscule</p>
+                        <p class="requirement" data-requirement="number">1 chiffre</p>
+                        <p class="requirement" data-requirement="special">1 caractère spécial</p>
+                    </div>
+                    <div class="error-message" id="password-error"></div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="confirm-password">Confirmer le mot de passe</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                    <div class="error-message" id="confirm-password-error"></div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="back-button">Retour</button>
+                    <button type="button" class="next-button">Suivant</button>
+                </div>
+            </div>
+
+            <!-- Troisième partie: Captcha -->
+            <div class="form-step" id="step3" style="display: none;">
+                <div class="captcha-container">
+                    <div class="captcha-initial">
+                        <label class="captcha-checkbox">
+                            <input type="checkbox" id="captcha-checkbox">
+                            <span class="checkmark"></span>
+                            Je ne suis pas un robot
+                        </label>
+                    </div>
+                    
+                    <div class="captcha-challenge" style="display: none;">
+                        <!-- Le défi du captcha sera injecté ici dynamiquement -->
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="back-button">Retour</button>
+                    <button type="submit" class="register-button" disabled>S'inscrire</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="login-link">
+            Déjà inscrit ? <a href="index.html" style="z-index: 10; position: relative;">Se connecter</a>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/captcha.js"></script>
+</body>
+</html>

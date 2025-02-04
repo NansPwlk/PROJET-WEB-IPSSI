@@ -3,38 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quizzeo - Inscription</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Quizzeo - Connexion</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="dotted-bg"></div>
-    <div class="form-container">
+    <div class="login-container">
         <div class="logo-container">
-            <img src="logo.png" alt="Logo Quizzeo" class="logo">
+            <img src="assets/logo.png" alt="Quizzeo Logo">
         </div>
-        <form>
-            <div class="input-group">
-                <label for="username">Nom d'utilisateur</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            
+        <form id="loginForm">
             <div class="input-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
+                <div class="error-message" id="email-error"></div>
             </div>
             
             <div class="input-group">
                 <label for="password">Mot de passe</label>
                 <input type="password" id="password" name="password" required>
+                <div class="error-message" id="password-error"></div>
             </div>
             
-            <div class="input-group">
-                <label for="confirm-password">Confirmer le mot de passe</label>
-                <input type="password" id="confirm-password" name="confirm-password" required>
+            <div class="forgot-password">
+                <a href="forgot-password.html" style="z-index: 10; position: relative;">Mot de passe oublié ?</a>
             </div>
             
-            <button type="submit">S'inscrire</button>
+            <button type="submit" class="login-button">Se connecter</button>
+            
+            <div class="register-link">
+                Pas encore de compte ? <a href="register.html" style="z-index: 10; position: relative;">S'inscrire</a>
+            </div>
         </form>
     </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/validation.js"></script>
 </body>
 </html>
