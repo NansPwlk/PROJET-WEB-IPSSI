@@ -89,24 +89,28 @@
             </div>
 
             <!-- Troisième partie: Captcha -->
-            <div class="form-step" id="step3" style="display: none;">
+            <div class="form-step" id="step3">
                 <div class="captcha-container">
-                    <div class="captcha-initial">
-                        <label class="captcha-checkbox">
-                            <input type="checkbox" id="captcha-checkbox">
-                            <span class="checkmark"></span>
-                            Je ne suis pas un robot
-                        </label>
+                    <div class="captcha-question" id="captcha-question">
+                        Chargement du Captcha...
                     </div>
-                    
-                    <div class="captcha-challenge" style="display: none;">
-                        <!-- Le défi du captcha sera injecté ici dynamiquement -->
+                    <div class="captcha-input-group">
+                        <input type="number" id="captcha-answer" placeholder="Votre réponse" required>
+                        <button type="button" id="refresh-captcha" title="Actualiser le Captcha">🔄</button>
                     </div>
+                    <div class="captcha-validation">
+                        <button type="button" class="validate-captcha" id="validate-captcha">
+                            Vérifier le CAPTCHA
+                        </button>
+                        <div class="captcha-status" id="captcha-status">En attente de validation</div>
+                        <button type="button" class="confirm-registration" id="confirm-registration">
+                            Confirmer l'inscription
+                        </button>
+                    </div>
+                    <div class="error-message" id="captcha-error"></div>
                 </div>
-
                 <div class="button-group">
                     <button type="button" class="back-button">Retour</button>
-                    <button type="submit" class="register-button" disabled>S'inscrire</button>
                 </div>
             </div>
         </form>

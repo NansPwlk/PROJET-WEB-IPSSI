@@ -1,5 +1,3 @@
-// validation.js
-
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('registerForm');
     if (!form) return;
@@ -17,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const confirmPasswordInput = document.getElementById('confirm-password');
     const strengthBar = document.querySelector('.strength-progress');
     const strengthText = document.querySelector('.strength-text');
-    const requirements = document.querySelectorAll('.requirement');
     
     // Toggle visibilité du mot de passe
     const togglePassword = document.querySelector('.toggle-password');
@@ -37,6 +34,22 @@ document.addEventListener('DOMContentLoaded', function() {
         number: (str) => /[0-9]/.test(str),
         special: (str) => /[^A-Za-z0-9]/.test(str)
     };
+
+    // Fonctions de gestion des erreurs
+    function showError(inputId, message) {
+        const errorElement = document.getElementById(`${inputId}-error`);
+        if (errorElement) {
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+    }
+
+    function hideError(inputId) {
+        const errorElement = document.getElementById(`${inputId}-error`);
+        if (errorElement) {
+            errorElement.style.display = 'none';
+        }
+    }
 
     // Validation du mot de passe en temps réel
     function validatePassword(password) {
@@ -76,6 +89,90 @@ document.addEventListener('DOMContentLoaded', function() {
         return validCriteria === Object.keys(passwordCriteria).length;
     }
 
+    // Navigation entre les étapes
+    function showStep(stepIndex) {
+        steps.forEach((step, index) => {
+            if (index === stepIndex) {
+                step.style.display = 'block';
+                step.classList.add('active');
+                step.classList.remove('inactive');
+            } else {
+                step.style.display = 'none';
+                step.classList.remove('active');
+                step.classList.add('inactive');
+            }
+        });
+    }
+
+    function validateFirstStep() {
+        const firstname = document.getElementById('firstname').value;
+        const lastname = document.getElementById('lastname').value;
+        const email = document.getElementById('email').value;
+        const role = document.getElementById('role').value;
+
+        let isValid = true;
+
+        if (!firstname || firstname.length < 2) {
+            showError('firstname', 'Le prénom doit contenir au moins 2 caractères');
+            isValid = false;
+        } else {
+            hideError('firstname');
+        }
+
+        if (!lastname || lastname.length < 2) {
+            showError('lastname', 'Le nom doit contenir au moins 2 caractères');
+            isValid = false;
+        } else {
+            hideError('lastname');
+        }
+
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            showError('email', 'Email invalide');
+            isValid = false;
+        } else {
+            hideError('email');
+        }
+
+        if (!role) {
+            showError('role', 'Veuillez sélectionner un rôle');
+            isValid = false;
+        } else {
+            hideError('role');
+        }
+
+        return isValid;
+    }
+
+    function validateSecondStep() {
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+
+        let isValid = validatePassword(password);
+
+        if (password !== confirmPassword) {
+            showError('confirm-password', 'Les mots de passe ne correspondent pas');
+            isValid = false;
+        } else {
+            hideError('confirm-password');
+        }
+
+        return isValid;
+    }
+
+    // Validation de l'étape courante
+    function validateStep(stepIndex) {
+        switch(stepIndex) {
+            case 0:
+                return validateFirstStep();
+            case 1:
+                return validateSecondStep();
+            case 2:
+                return true; // La validation du CAPTCHA est gérée séparément
+            default:
+                return true;
+        }
+    }
+
     // Événements de validation
     if (passwordInput) {
         passwordInput.addEventListener('input', function() {
@@ -91,72 +188,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 hideError('confirm-password');
             }
         });
-    }
-
-    // Navigation entre les étapes
-    function showStep(stepIndex) {
-        steps.forEach((step, index) => {
-            step.style.display = index === stepIndex ? 'block' : 'none';
-        });
-    }
-
-    // Validation de l'étape courante
-    function validateStep(stepIndex) {
-        switch(stepIndex) {
-            case 0:
-                return validateFirstStep();
-            case 1:
-                return validateSecondStep();
-            case 2:
-                return validateCaptcha();
-            default:
-                return true;
-        }
-    }
-
-    function validateFirstStep() {
-        const firstname = document.getElementById('firstname').value;
-        const lastname = document.getElementById('lastname').value;
-        const email = document.getElementById('email').value;
-        const role = document.getElementById('role').value;
-
-        let isValid = true;
-
-        if (!firstname || firstname.length < 2) {
-            showError('firstname', 'Le prénom doit contenir au moins 2 caractères');
-            isValid = false;
-        }
-
-        if (!lastname || lastname.length < 2) {
-            showError('lastname', 'Le nom doit contenir au moins 2 caractères');
-            isValid = false;
-        }
-
-        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            showError('email', 'Email invalide');
-            isValid = false;
-        }
-
-        if (!role) {
-            showError('role', 'Veuillez sélectionner un rôle');
-            isValid = false;
-        }
-
-        return isValid;
-    }
-
-    function validateSecondStep() {
-        const password = passwordInput.value;
-        const confirmPassword = confirmPasswordInput.value;
-
-        let isValid = validatePassword(password);
-
-        if (password !== confirmPassword) {
-            showError('confirm-password', 'Les mots de passe ne correspondent pas');
-            isValid = false;
-        }
-
-        return isValid;
     }
 
     // Navigation
@@ -176,12 +207,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Soumission du formulaire
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        if (validateStep(currentStep)) {
-            // Logique de soumission du formulaire
-            console.log('Formulaire soumis avec succès !');
+    // Initialize
+    showStep(currentStep);
+
+    // Validation en temps réel des champs de la première étape
+    ['firstname', 'lastname', 'email'].forEach(fieldId => {
+        const input = document.getElementById(fieldId);
+        if (input) {
+            input.addEventListener('input', () => {
+                if (input.value.length > 0) {
+                    hideError(fieldId);
+                }
+            });
         }
     });
+
+    // Validation du rôle
+    const roleSelect = document.getElementById('role');
+    if (roleSelect) {
+        roleSelect.addEventListener('change', () => {
+            if (roleSelect.value) {
+                hideError('role');
+            }
+        });
+    }
 });
