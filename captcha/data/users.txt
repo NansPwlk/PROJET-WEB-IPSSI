@@ -1,1 +1,2 @@
 {"firstname":"Nans","lastname":"PAWLAK","email":"pawlak.nans@gmail.com","password":"$2y$12$OXEHy5Dtjz3geTPErSit1OWu\/GD2nWQTvSedY4SeDVgANzy8AT.Xe","role":"entreprise","created_at":"2025-02-05 09:59:38"}
+{"firstname":"Paul","lastname":"Gpt","email":"nanssouille05@gmail.com","password":"$2y$12$4KwmCBVHZQBRujxlZYGfFuJiiBKyoQsZn.SrjL8mSuXKSo7zyMMYe","role":"ecole","created_at":"2025-02-05 10:06:24"}
