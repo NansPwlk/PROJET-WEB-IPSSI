@@ -124,8 +124,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 const data = await response.json();
                 
                 if (data.success) {
-                    alert('Inscription réussie ! Vous allez être redirigé vers la page de connexion.');
-                    window.location.href = '/index.html';
+                    const userRole = formData.get('role');
+                    if (userRole === 'utilisateur') {
+                        window.location.href = '../success-page.html';
+                    } else {
+                        window.location.href = '../index.html';
+                    }
                 } else {
                     alert('Erreur : ' + (data.error || 'Une erreur est survenue'));
                 }
