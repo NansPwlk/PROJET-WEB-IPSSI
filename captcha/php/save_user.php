@@ -16,6 +16,9 @@ if (!isset($_SESSION['captcha_validated']) || $_SESSION['captcha_validated'] !==
     exit;
 }
 
+$input = file_get_contents('php://input');
+$data = json_decode($input, true);
+
 // Récupérer les données du formulaire
 $userData = [
     'id' => uniqid(),

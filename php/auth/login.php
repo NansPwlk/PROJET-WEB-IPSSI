@@ -68,7 +68,7 @@ try {
                     case 'entreprise':
                         $redirect = '/public/entreprise-dashboard.html';
                         break;
-                    default:
+                    case 'utilisateur':
                         $redirect = '/public/user-dashboard.html';
                 }
 
