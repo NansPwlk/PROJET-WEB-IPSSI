@@ -98,9 +98,12 @@ function createQuizCard(quiz) {
                 <span>${quiz.responses_count} réponses</span>
             </div>
             <div class="quiz-actions">
-                ${quiz.status === 'draft' ? 
-                    `<button class="quiz-action-btn btn-edit" onclick="editQuiz('${quiz.id}')">Modifier</button>` : 
-                    `<button class="quiz-action-btn btn-view" onclick="viewQuiz('${quiz.id}')">Voir</button>`}
+                ${quiz.status === 'draft' ? `
+                    <button class="quiz-action-btn btn-edit" onclick="editQuiz('${quiz.id}')">Modifier</button>
+                    <button class="quiz-action-btn btn-publish" onclick="publishQuiz('${quiz.id}')">Publier</button>
+                ` : `
+                    <button class="quiz-action-btn btn-view" onclick="viewQuiz('${quiz.id}')">Voir</button>
+                `}
             </div>
         </div>
     `;
@@ -120,4 +123,27 @@ async function viewQuiz(quizId) {
 
 async function viewResults(quizId) {
     window.location.href = `/public/quiz-results.html?id=${quizId}`;
+}
+
+async function publishQuiz(quizId) {
+    try {
+        const response = await fetch('/php/quiz/publish_quiz.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ quiz_id: quizId })
+        });
+
+        const data = await response.json();
+        
+        if (data.success) {
+            loadQuizzes(); // Recharger la liste des quiz
+        } else {
+            alert('Erreur lors de la publication du quiz');
+        }
+    } catch (error) {
+        console.error('Erreur:', error);
+        alert('Erreur lors de la publication du quiz');
+    }
 }
