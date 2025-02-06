@@ -1,6 +1,4 @@
 <?php
-
-
 header('Content-Type: application/json');
 session_start();
 
@@ -20,14 +18,14 @@ if (!isset($_SESSION['captcha_validated']) || $_SESSION['captcha_validated'] !==
 
 // Récupérer les données du formulaire
 $userData = [
-    'id' => uniqid(),  // Ajout d'un ID unique
+    'id' => uniqid(),
     'firstname' => $_POST['firstname'] ?? '',
     'lastname' => $_POST['lastname'] ?? '',
     'email' => $_POST['email'] ?? '',
     'password' => password_hash($_POST['password'] ?? '', PASSWORD_DEFAULT),
     'role' => $_POST['role'] ?? '',
     'created_at' => date('Y-m-d H:i:s'),
-    'isActive' => true  // Par défaut, l'utilisateur est actif
+    'isActive' => true
 ];
 
 // Valider les données
@@ -63,12 +61,22 @@ try {
     $userJson = json_encode($userData) . "\n";
     file_put_contents($usersFile, $userJson, FILE_APPEND);
     
-    // Réinitialiser la session
+    // Créer la session utilisateur
+    $_SESSION['user'] = [
+        'id' => $userData['id'],
+        'firstname' => $userData['firstname'],
+        'lastname' => $userData['lastname'],
+        'email' => $userData['email'],
+        'role' => $userData['role']
+    ];
+    
+    // Réinitialiser la validation du CAPTCHA
     unset($_SESSION['captcha_validated']);
     
     echo json_encode([
         'success' => true,
-        'message' => 'Inscription réussie'
+        'message' => 'Inscription réussie',
+        'user' => $_SESSION['user']
     ]);
 } catch (Exception $e) {
     http_response_code(500);

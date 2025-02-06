@@ -12,11 +12,82 @@
         <div class="logo-container">
             <img src="assets/logo.png" alt="Quizzeo Logo">
         </div>
-        <div style="text-align: center; padding: 2rem;">
-            <h1 style="color: var(--color-purple); margin-bottom: 1.5rem;">Inscription réussie Simple user!</h1>
+
+        <!-- Message de base pour tous les utilisateurs -->
+        <div class="base-success" style="text-align: center; padding: 2rem;">
+            <h1 style="color: var(--color-purple); margin-bottom: 1.5rem;">Inscription réussie !</h1>
+        </div>
+
+        <!-- Formulaire spécifique pour les écoles -->
+        <div id="ecole-form" style="display: none;">
+            <form id="ecole-details-form">
+                <div class="input-group">
+                    <label for="school-name">Nom de l'école</label>
+                    <input type="text" id="school-name" name="school-name" required>
+                    <div class="error-message" id="school-name-error"></div>
+                </div>
+
+                <div class="input-group">
+                    <label for="school-city">Ville</label>
+                    <input type="text" id="school-city" name="school-city" required>
+                    <div class="error-message" id="school-city-error"></div>
+                </div>
+
+                <button type="submit" class="login-button">Finaliser l'inscription</button>
+            </form>
+        </div>
+
+        <!-- Bouton de redirection pour les autres rôles -->
+        <div id="default-redirect" style="text-align: center; display: none;">
             <p style="font-size: 1.2rem; margin-bottom: 2rem;">Place au quiz !</p>
-            <a href="Home.html" class="login-button" style="text-decoration: none; display: inline-block;">Commencer</a>
+            <a href="/public/Home.html" class="login-button" style="text-decoration: none; display: inline-block;">Commencer</a>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Récupérer le rôle de l'utilisateur depuis la session ou l'URL
+            const userRole = new URLSearchParams(window.location.search).get('role');
+
+            if (userRole === 'ecole') {
+                document.getElementById('ecole-form').style.display = 'block';
+                document.getElementById('default-redirect').style.display = 'none';
+
+                // Gestion du formulaire école
+                const ecoleForm = document.getElementById('ecole-details-form');
+                ecoleForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+
+                    const schoolName = document.getElementById('school-name').value;
+                    const schoolCity = document.getElementById('school-city').value;
+
+                    try {
+                        const response = await fetch('/php/auth/update_school_details.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                schoolName,
+                                schoolCity
+                            })
+                        });;
+
+                        if (response.ok) {
+                            window.location.href = '/public/ecole-dashboard.html';
+                        } else {
+                            alert('Erreur lors de la mise à jour des informations');
+                        }
+                    } catch (error) {
+                        console.error('Erreur:', error);
+                        alert('Erreur lors de la mise à jour des informations');
+                    }
+                });
+            } else {
+                document.getElementById('ecole-form').style.display = 'none';
+                document.getElementById('default-redirect').style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>

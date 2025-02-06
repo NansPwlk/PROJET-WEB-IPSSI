@@ -616,11 +616,242 @@ button:not(:disabled):active {
     gap: 1rem;
 }
 
+/* Styles pour le dashboard école */
+.dashboard-container {
+    max-width: 1200px;
+    width: 95%;
+    margin: 2rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.school-info {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.school-info h1 {
+    color: var(--color-purple);
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2rem;
+}
+
+.create-quiz-btn {
+    background: linear-gradient(45deg, var(--color-purple), var(--color-salmon));
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    z-index: 10;
+    position: relative;
+
+}
+
+.create-quiz-btn:hover {
+    transform: translateY(-2px);
+}
+
+.quiz-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.quiz-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quiz-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-status {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.status-draft {
+    background: #f3f4f6;
+    color: var(--color-gray);
+}
+
+.status-active {
+    background: #dcfce7;
+    color: var(--color-success);
+}
+
+.status-completed {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.quiz-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-purple);
+}
+
+.quiz-stats {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--color-gray);
+}
+
+.quiz-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    
+}
+
+.quiz-action-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+    z-index: 10;
+    position: relative;
+}
+
+.btn-edit {
+    background: var(--color-purple);
+    color: white;
+    
+}
+
+.btn-view {
+    background: var(--color-orange);
+    color: white;
+}
+
+.btn-results {
+    background: var(--color-success);
+    color: white;
+}
+
 .connected-user-card {
     background: #f8f9fa;
     padding: 1rem;
     border-radius: 8px;
     border: 1px solid #e5e7eb;
+}
+
+/* Styles pour la création de quiz */
+.quiz-creation-container {
+    max-width: 800px;
+    width: 95%;
+    margin: 2rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.question-box {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #e5e7eb;
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.delete-question {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--color-error);
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+}
+
+.options-container {
+    margin-top: 1rem;
+}
+
+.option {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    z-index: 10;
+    position: relative;
+}
+
+.add-question-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--color-purple);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin: 1rem 0;
+    cursor: pointer;
+    z-index: 10;
+    position: relative;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    z-index: 10;
+    position: relative;
+}
+
+.secondary-btn {
+    background: white;
+    border: 2px solid var(--color-purple);
+    color: var(--color-purple);
+    z-index: 10;
+    position: relative;
+}
+
+.primary-btn {
+    background: var(--color-purple);
+    color: white;
+    border: none;
+    z-index: 10;
+    position: relative;
+}
+
+.secondary-btn, .primary-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    flex: 1;
 }
 
 /* Responsive */
