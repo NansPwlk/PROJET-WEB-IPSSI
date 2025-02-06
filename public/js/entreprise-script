@@ -1,0 +1,62 @@
+// script.js
+
+// Mock data
+const users = [
+  { username: "Alice", isActive: true },
+  { username: "Bob", isActive: false },
+  { username: "Charlie", isActive: true }
+];
+
+const quizzes = [
+  { title: "Quiz sur JavaScript", status: "En cours d'écriture", responses: 5 },
+  { title: "Quiz sur CSS", status: "Lancé", responses: 10 },
+  { title: "Quiz sur HTML", status: "Terminé", responses: 15 }
+];
+
+// Load data into the Users Table
+function loadUsers() {
+  const userTableBody = document.getElementById("users-table").querySelector("tbody");
+  userTableBody.innerHTML = "";
+
+  users.forEach(user => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${user.username}</td>
+      <td>${user.isActive ? "Actif" : "Inactif"}</td>
+      <td><button onclick="toggleUserStatus('${user.username}')">${user.isActive ? "Désactiver" : "Activer"}</button></td>
+    `;
+    userTableBody.appendChild(row);
+  });
+}
+
+// Load data into the Quiz Table
+function loadQuizzes() {
+  const quizTableBody = document.getElementById("quiz-table").querySelector("tbody");
+  quizTableBody.innerHTML = "";
+
+  quizzes.forEach(quiz => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${quiz.title}</td>
+      <td>${quiz.status}</td>
+      <td>${quiz.responses}</td>
+    `;
+    quizTableBody.appendChild(row);
+  });
+}
+
+// Toggle user status (mock action)
+function toggleUserStatus(username) {
+  const user = users.find(user => user.username === username);
+  user.isActive = !user.isActive;
+  loadUsers();
+}
+
+// Handle quiz creation button
+document.getElementById("create-quiz-btn").addEventListener("click", () => {
+  alert("Redirection vers le formulaire de création de quiz !");
+});
+
+// Initialize dashboard
+loadUsers();
+loadQuizzes();

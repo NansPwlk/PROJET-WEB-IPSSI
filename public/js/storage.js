@@ -148,6 +148,7 @@ class UserStorage {
 // Créer une instance globale pour l'utiliser partout
 window.userStorage = new UserStorage();
 
+
 // Exemple d'utilisation:
 /*
 try {

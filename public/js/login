@@ -1,0 +1,23 @@
+
+document.getElementById("loginForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+  
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+  
+    try {
+      // Connexion de l'utilisateur via UserStorage
+      const user = window.userStorage.loginUser(email, password);
+  
+      if (user.role === "entreprise") {
+        // Redirection vers le dashboard entreprise
+        window.location.href = "entreprise-dashboard.html";
+      } else {
+        alert("Accès réservé uniquement pour les comptes entreprise.");
+      }
+  
+    } catch (error) {
+      alert(error.message);
+    }
+  });
+  
