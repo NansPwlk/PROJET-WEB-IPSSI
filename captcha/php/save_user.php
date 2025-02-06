@@ -20,12 +20,14 @@ if (!isset($_SESSION['captcha_validated']) || $_SESSION['captcha_validated'] !==
 
 // Récupérer les données du formulaire
 $userData = [
+    'id' => uniqid(),  // Ajout d'un ID unique
     'firstname' => $_POST['firstname'] ?? '',
     'lastname' => $_POST['lastname'] ?? '',
     'email' => $_POST['email'] ?? '',
-    'password' => password_hash($_POST['password'] ?? '', PASSWORD_DEFAULT), // Hashage du mot de passe
+    'password' => password_hash($_POST['password'] ?? '', PASSWORD_DEFAULT),
     'role' => $_POST['role'] ?? '',
-    'created_at' => date('Y-m-d H:i:s')
+    'created_at' => date('Y-m-d H:i:s'),
+    'isActive' => true  // Par défaut, l'utilisateur est actif
 ];
 
 // Valider les données
@@ -38,11 +40,11 @@ if (empty($userData['firstname']) || empty($userData['lastname']) ||
 }
 
 // Fichier de stockage des utilisateurs
-$usersFile = __DIR__ . '/../data/users.txt';
+$usersFile = __DIR__ . '/../../data/users.txt';
 
 // Créer le dossier data s'il n'existe pas
-if (!file_exists(__DIR__ . '/../data')) {
-    mkdir(__DIR__ . '/../data', 0755, true);
+if (!file_exists(__DIR__ . '/../../data')) {
+    mkdir(__DIR__ . '/../../data', 0755, true);
 }
 
 // Vérifier si l'email existe déjà

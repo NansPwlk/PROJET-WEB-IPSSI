@@ -1,7 +1,66 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('registerForm');
-    if (!form) return;
+    // Vérifier si nous sommes sur la page d'inscription
+    const registerForm = document.getElementById('registerForm');
+    if (registerForm) {
+        initializeRegistrationForm();
+    }
 
+    // Vérifier si nous sommes sur la page de connexion
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        initializeLoginForm();
+    }
+});
+
+// Initialisation du formulaire de connexion
+function initializeLoginForm() {
+    const loginForm = document.getElementById('loginForm');
+    
+    loginForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        // Récupérer les données du formulaire
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Réinitialiser les messages d'erreur
+        hideError('email');
+        hideError('password');
+
+        try {
+            const response = await fetch('/php/auth/login.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Redirection selon le rôle
+                window.location.href = data.redirect;
+            } else {
+                // Afficher l'erreur appropriée
+                if (data.error.includes('Email')) {
+                    showError('email', data.error);
+                } else if (data.error.includes('mot de passe')) {
+                    showError('password', data.error);
+                } else {
+                    // Erreur générale
+                    showError('email', data.error);
+                }
+            }
+        } catch (error) {
+            console.error('Erreur de connexion:', error);
+            showError('email', 'Erreur de connexion au serveur');
+        }
+    });
+}
+
+// Initialisation du formulaire d'inscription
+function initializeRegistrationForm() {
     // Gestion des étapes
     const steps = Array.from(document.getElementsByClassName('form-step'));
     let currentStep = 0;
@@ -35,20 +94,19 @@ document.addEventListener('DOMContentLoaded', function() {
         special: (str) => /[^A-Za-z0-9]/.test(str)
     };
 
-    // Fonctions de gestion des erreurs
-    function showError(inputId, message) {
-        const errorElement = document.getElementById(`${inputId}-error`);
-        if (errorElement) {
-            errorElement.textContent = message;
-            errorElement.style.display = 'block';
-        }
-    }
-
-    function hideError(inputId) {
-        const errorElement = document.getElementById(`${inputId}-error`);
-        if (errorElement) {
-            errorElement.style.display = 'none';
-        }
+    // Navigation entre les étapes
+    function showStep(stepIndex) {
+        steps.forEach((step, index) => {
+            if (index === stepIndex) {
+                step.style.display = 'block';
+                step.classList.add('active');
+                step.classList.remove('inactive');
+            } else {
+                step.style.display = 'none';
+                step.classList.remove('active');
+                step.classList.add('inactive');
+            }
+        });
     }
 
     // Validation du mot de passe en temps réel
@@ -87,21 +145,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         return validCriteria === Object.keys(passwordCriteria).length;
-    }
-
-    // Navigation entre les étapes
-    function showStep(stepIndex) {
-        steps.forEach((step, index) => {
-            if (index === stepIndex) {
-                step.style.display = 'block';
-                step.classList.add('active');
-                step.classList.remove('inactive');
-            } else {
-                step.style.display = 'none';
-                step.classList.remove('active');
-                step.classList.add('inactive');
-            }
-        });
     }
 
     function validateFirstStep() {
@@ -231,4 +274,20 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-});
+}
+
+// Fonctions utilitaires pour les messages d'erreur
+function showError(inputId, message) {
+    const errorElement = document.getElementById(`${inputId}-error`);
+    if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+    }
+}
+
+function hideError(inputId) {
+    const errorElement = document.getElementById(`${inputId}-error`);
+    if (errorElement) {
+        errorElement.style.display = 'none';
+    }
+}

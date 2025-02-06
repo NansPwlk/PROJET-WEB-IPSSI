@@ -126,9 +126,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.success) {
                     const userRole = formData.get('role');
                     if (userRole === 'utilisateur') {
-                        window.location.href = '../success-page.html';
+                        window.location.href = '/../success-page.html';
                     } else {
-                        window.location.href = '../index.html';
+                        window.location.href = '/../index.html';
                     }
                 } else {
                     alert('Erreur : ' + (data.error || 'Une erreur est survenue'));

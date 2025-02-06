@@ -477,3 +477,155 @@ button:not(:disabled):active {
 .input-group input:focus:valid {
     box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
+
+/* Styles spécifiques à l'admin */
+.admin-container {
+    max-width: 1200px;
+    width: 95%;
+    margin: 2rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation */
+.admin-nav {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 1rem;
+}
+
+.nav-button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: #f3f4f6;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-gray);
+    transition: all 0.3s ease;
+}
+
+.nav-button.active {
+    background: var(--color-purple);
+    color: white;
+}
+
+/* Tableaux */
+.table-container {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-table th {
+    background: #f8f9fa;
+    font-weight: 600;
+    color: var(--color-gray);
+}
+
+/* Onglets */
+.tab-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Barre de recherche */
+.search-bar {
+    margin-bottom: 1rem;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+/* Statuts et badges */
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.status-active {
+    background: #dcfce7;
+    color: var(--color-success);
+}
+
+.status-inactive {
+    background: #fee2e2;
+    color: var(--color-error);
+}
+
+/* Boutons d'action */
+.action-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.action-button.activate {
+    background: var(--color-success);
+    color: white;
+}
+
+.action-button.deactivate {
+    background: var(--color-error);
+    color: white;
+}
+
+/* Liste des utilisateurs connectés */
+.connected-users {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.connected-user-card {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-nav {
+        flex-direction: column;
+    }
+
+    .admin-table {
+        font-size: 0.875rem;
+    }
+
+    .action-button {
+        padding: 0.25rem 0.5rem;
+    }
+}
