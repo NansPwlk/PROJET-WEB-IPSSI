@@ -38,7 +38,7 @@ body {
     background-image: radial-gradient(var(--color-purple) 1px, transparent 1px);
     background-size: 10px 10px;
     opacity: 0.1;
-    animation: fadeIn 1s ease-in;
+
 }
 
 /* Conteneurs principaux */
@@ -507,6 +507,8 @@ button:not(:disabled):active {
     font-weight: 600;
     color: var(--color-gray);
     transition: all 0.3s ease;
+    z-index: 10;
+    position: relative;
 }
 
 .nav-button.active {
@@ -553,6 +555,8 @@ button:not(:disabled):active {
 /* Barre de recherche */
 .search-bar {
     margin-bottom: 1rem;
+    z-index: 10;
+    position: relative;
 }
 
 .search-bar input {
@@ -589,16 +593,20 @@ button:not(:disabled):active {
     cursor: pointer;
     font-size: 0.875rem;
     transition: all 0.2s ease;
+    z-index: 10;
+    position: relative;
 }
 
 .action-button.activate {
     background: var(--color-success);
     color: white;
+
 }
 
 .action-button.deactivate {
     background: var(--color-error);
     color: white;
+
 }
 
 /* Liste des utilisateurs connectés */
@@ -627,5 +635,6 @@ button:not(:disabled):active {
 
     .action-button {
         padding: 0.25rem 0.5rem;
+        
     }
 }
