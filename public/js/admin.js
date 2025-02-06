@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </td>
                 <td>
                     <button 
-                        onclick="toggleUserStatus(${user.id}, ${user.isActive})"
                         class="action-button ${user.isActive ? 'deactivate' : 'activate'}"
+                        onclick='toggleUserStatus("${user.id || ''}", ${Boolean(user.isActive)})'
                     >
                         ${user.isActive ? 'Désactiver' : 'Activer'}
                     </button>
@@ -129,7 +129,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Actions sur les utilisateurs et quiz
     window.toggleUserStatus = async function(userId, currentStatus) {
+        console.log("🚀 Fonction toggleUserStatus appelée avec:", { userId, currentStatus }); // Debug
+    
         try {
+            console.log("📫 Envoi de la requête à toggle-user-status.php");
             const response = await fetch('/php/admin/toggle-user-status.php', {
                 method: 'POST',
                 headers: {
@@ -138,13 +141,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: JSON.stringify({ userId, status: !currentStatus })
             });
             
+            console.log("📬 Réponse reçue:", response);
+            
             if (response.ok) {
+                console.log("✅ Statut modifié avec succès");
                 loadUsers(); // Recharger la liste
             } else {
+                const errorData = await response.json();
+                console.error("❌ Erreur serveur:", errorData);
                 alert('Erreur lors de la modification du statut');
             }
         } catch (error) {
-            console.error('Erreur:', error);
+            console.error("🔥 Erreur:", error);
             alert('Erreur lors de la modification du statut');
         }
     };
