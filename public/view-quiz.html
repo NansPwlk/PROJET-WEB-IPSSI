@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzeo - Voir le Quiz</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body>
+    <div class="dotted-bg"></div>
+    <div class="quiz-view-container">
+        <div class="logo-container">
+            <img src="/public/assets/logo.png" alt="Quizzeo Logo">
+        </div>
+        
+        <div class="quiz-content">
+            <h1 id="quiz-title"></h1>
+            
+            <div class="quiz-info">
+                <span class="quiz-creator"></span>
+                <span class="quiz-date"></span>
+            </div>
+
+            <div id="questions-container"></div>
+
+            <div class="responses-section">
+                <h2>Réponses des élèves</h2>
+                <div id="responses-list"></div>
+            </div>
+
+            <div class="action-buttons">
+                <button onclick="window.location.href='/public/ecole-dashboard.html'" class="secondary-btn">Retour</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/public/js/view-quiz.js"></script>
+</body>
+</html>

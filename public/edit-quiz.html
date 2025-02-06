@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzeo - Modifier le Quiz</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body>
+    <div class="dotted-bg"></div>
+    <div class="quiz-edit-container">
+        <div class="logo-container">
+            <img src="/public/assets/logo.png" alt="Quizzeo Logo">
+        </div>
+        
+        <form id="editQuizForm" class="quiz-form">
+            <h1>Modifier le Quiz</h1>
+            
+            <div class="input-group">
+                <label for="quiz-title">Titre du Quiz</label>
+                <input type="text" id="quiz-title" name="title" required>
+            </div>
+
+            <div id="questions-container"></div>
+
+            <button type="button" class="add-question-btn" onclick="addQuestion()">
+                Ajouter une question
+            </button>
+
+            <div class="form-actions">
+                <button type="button" onclick="window.location.href='/public/ecole-dashboard.html'" class="secondary-btn">Annuler</button>
+                <button type="submit" class="primary-btn">Enregistrer les modifications</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="/public/js/edit-quiz.js"></script>
+</body>
+</html>

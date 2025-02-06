@@ -78,6 +78,34 @@ function createQuizCard(quiz) {
     `;
 }
 
+function viewQuiz(quizId) {
+    window.location.href = `/public/view-quiz.html?id=${quizId}`;
+}
+
+function editQuiz(quizId) {
+    window.location.href = `/public/edit-quiz.html?id=${quizId}`;
+}
+
+function createQuizCard(quiz) {
+    return `
+        <div class="quiz-card">
+            <span class="quiz-status ${quiz.status === 'draft' ? 'status-draft' : quiz.status === 'active' ? 'status-active' : 'status-completed'}">
+                ${quiz.status === 'draft' ? 'Brouillon' : quiz.status === 'active' ? 'En cours' : 'Terminé'}
+            </span>
+            <h3 class="quiz-title">${quiz.title}</h3>
+            <div class="quiz-stats">
+                <span>${quiz.questions_count} questions</span>
+                <span>${quiz.responses_count} réponses</span>
+            </div>
+            <div class="quiz-actions">
+                ${quiz.status === 'draft' ? 
+                    `<button class="quiz-action-btn btn-edit" onclick="editQuiz('${quiz.id}')">Modifier</button>` : 
+                    `<button class="quiz-action-btn btn-view" onclick="viewQuiz('${quiz.id}')">Voir</button>`}
+            </div>
+        </div>
+    `;
+}
+
 async function createNewQuiz() {
     window.location.href = '/public/create-quiz.html';
 }
