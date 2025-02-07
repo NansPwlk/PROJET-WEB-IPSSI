@@ -3,3 +3,4 @@
 {"id":"67a5130437555","firstname":"petit","lastname":"zizi","email":"entre@prise.fr","password":"$2y$12$27Cq8L6TIfLWTcSsw1gf1uxf.t9d5SgxGX4URqq.\/H.Mte14SUoui","role":"entreprise","created_at":"2025-02-06 19:52:36","isActive":true}
 {"id":"67a514c7ee71e","firstname":"petit","lastname":"zizi","email":"entre@pris.fr","password":"$2y$12$XI6pwiw\/JDeIC0v92BuBX.PLNpRrP\/.i4IGMvU2OkjwSM0qbcT4CC","role":"entreprise","created_at":"2025-02-06 20:00:08","isActive":true}
 {"id":"67a516129f212","firstname":"petit","lastname":"zizi","email":"user@user.fr","password":"$2y$12$n.HqQt1ecZ9yRAIkVIsmS.Fbk7xRsMaeKxjh4b3Pj0tGNPOiPq.By","role":"utilisateur","created_at":"2025-02-06 20:05:39","isActive":true}
+{"id":"67a52b06e1beb","firstname":"gros","lastname":"zizi","email":"user@caca.fr","password":"$2y$12$F\/O7EUtVjiQAG7la0yvISekkk1VAwjo.bxJKq\/Fms9yWJINkbPMKa","role":"utilisateur","created_at":"2025-02-06 21:35:03","isActive":true}
