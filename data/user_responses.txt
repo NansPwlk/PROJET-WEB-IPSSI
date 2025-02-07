@@ -20,3 +20,11 @@
 {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5b49b400cf","quiz_title":"TESTSD","responses":[0],"is_survey":false,"completed_at":"2025-02-07 07:22:30","score":1,"total_points":1}
 {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5b49b400cf","quiz_title":"TESTSD","responses":[0],"is_survey":false,"completed_at":"2025-02-07 07:26:27","score":1,"total_points":1}
 {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5cf2d47fe9","quiz_title":"Pr\u00e9sentation Test","responses":[0],"is_survey":false,"completed_at":"2025-02-07 09:15:44","score":1,"total_points":1}
+{"user_email":"levy@gmail.com","quiz_id":"67a4e99a60453","quiz_title":"test","responses":[1,0],"is_survey":false,"completed_at":"2025-02-07 09:57:42","score":1,"total_points":2}
+{"user_email":"levy@gmail.com","quiz_id":"67a5a175ee746","quiz_title":"test encore","responses":[2,3],"is_survey":false,"completed_at":"2025-02-07 09:57:57","score":2,"total_points":2}
+{"user_email":"levy@gmail.com","quiz_id":"67a5a2a7578dc","quiz_title":"encoreet encoer","responses":[3,0,0],"is_survey":false,"completed_at":"2025-02-07 09:58:30","score":3,"total_points":3}
+{"user_email":"levy@gmail.com","quiz_id":"67a587e56e60f","quiz_title":"ert","responses":[0],"is_survey":false,"completed_at":"2025-02-07 10:05:08","score":0,"total_points":1}
+{"user_email":"levy@gmail.com","quiz_id":"67a4e7272d1b4","quiz_title":"sdf","responses":[0,3],"is_survey":false,"completed_at":"2025-02-07 10:06:36","score":2,"total_points":2}
+{"user_email":"levy@gmail.com","quiz_id":"67a4e8ea85893","quiz_title":"TESTO","responses":[1],"is_survey":false,"completed_at":"2025-02-07 10:08:54","score":1,"total_points":1}
+{"user_email":"levy@gmail.com","quiz_id":"67a5a33f78132","quiz_title":"jh","responses":[0,0],"is_survey":false,"completed_at":"2025-02-07 10:11:38","score":1,"total_points":2}
+{"user_email":"levy@gmail.com","quiz_id":"67a5cf2d47fe9","quiz_title":"Pr\u00e9sentation Test","responses":[0],"is_survey":false,"completed_at":"2025-02-07 10:13:32","score":1,"total_points":1}

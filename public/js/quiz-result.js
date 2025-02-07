@@ -40,23 +40,15 @@ async function fetchQuizResults(quizId) {
         }
 
         if (data.success) {
-            // Debuggage : vérifier les résultats
-            console.log('Résultats reçus :', data.quiz_results);
-            
-            // Si plusieurs résultats, prendre le premier
-            const resultData = Array.isArray(data.quiz_results) 
-                ? data.quiz_results[0] 
-                : data.quiz_results;
-
-            console.log('Résultat à afficher :', resultData);
-            
-            if (resultData) {
-                displayQuizResults(resultData);
+            if (data.quiz_result) {
+                console.log('Résultat reçu :', data.quiz_result);
+                displayQuizResults(data.quiz_result);
             } else {
-                showErrorMessage('Aucun résultat trouvé');
+                showErrorMessage('Aucun résultat disponible pour ce quiz');
             }
         } else {
-            throw new Error(data.error || 'Impossible de charger les résultats');
+            console.error('Erreur de chargement des résultats :', data.error);
+            showErrorMessage(data.error || 'Impossible de charger les résultats');
         }
     } catch (error) {
         console.error('Erreur lors du chargement des résultats:', error);
@@ -65,13 +57,19 @@ async function fetchQuizResults(quizId) {
 }
 
 function showErrorMessage(message) {
-    document.querySelector('.quiz-result-content').innerHTML = `
-        <h1>Erreur</h1>
-        <p>${message}</p>
-        <button id="returnToDashboardBtn" class="submit-btn">
-            Retour au Dashboard
-        </button>
-    `;
+    const resultContent = document.querySelector('.quiz-result-content');
+    if (resultContent) {
+        resultContent.innerHTML = `
+            <h1>Erreur</h1>
+            <p>${message}</p>
+            <button id="returnToDashboardBtn" class="submit-btn">
+                Retour au Dashboard
+            </button>
+        `;
+    } else {
+        console.error('Élément .quiz-result-content non trouvé');
+        alert(message);
+    }
 }
 
 function displayQuizResults(resultData) {
@@ -82,6 +80,13 @@ function displayQuizResults(resultData) {
     const totalScoreEl = document.getElementById('totalScore');
     const scorePercentageEl = document.getElementById('scorePercentage');
     const resultFeedbackEl = document.getElementById('resultFeedback');
+
+    // Vérifier que les éléments existent
+    if (!quizTitleEl || !userScoreEl || !totalScoreEl || !scorePercentageEl || !resultFeedbackEl) {
+        console.error('Un ou plusieurs éléments de résultat sont manquants');
+        showErrorMessage('Erreur de mise à jour des résultats');
+        return;
+    }
 
     // Vérifier que les données sont valides
     if (!resultData || 

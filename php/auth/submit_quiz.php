@@ -4,8 +4,18 @@ header('Content-Type: application/json');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// Log de débogage
+file_put_contents(__DIR__ . '/debug_submit.log', 
+    date('[Y-m-d H:i:s] ') . "Début de la soumission du quiz\n", 
+    FILE_APPEND
+);
+
 // Vérifier l'authentification
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'utilisateur') {
+    file_put_contents(__DIR__ . '/debug_submit.log', 
+        date('[Y-m-d H:i:s] ') . "Erreur : Utilisateur non authentifié\n", 
+        FILE_APPEND
+    );
     http_response_code(403);
     echo json_encode(['success' => false, 'error' => 'Accès non autorisé']);
     exit;
@@ -16,6 +26,10 @@ $inputData = json_decode(file_get_contents('php://input'), true);
 
 // Valider les données
 if (!isset($inputData['quiz_id']) || !isset($inputData['responses'])) {
+    file_put_contents(__DIR__ . '/debug_submit.log', 
+        date('[Y-m-d H:i:s] ') . "Erreur : Données invalides\n", 
+        FILE_APPEND
+    );
     http_response_code(400);
     echo json_encode(['success' => false, 'error' => 'Données invalides']);
     exit;
@@ -25,6 +39,16 @@ $quizId = $inputData['quiz_id'];
 $userResponses = $inputData['responses'];
 $userEmail = $_SESSION['user']['email'];
 
+// Log des informations reçues
+file_put_contents(__DIR__ . '/debug_submit.log', 
+    date('[Y-m-d H:i:s] ') . "Informations reçues : " . json_encode([
+        'quiz_id' => $quizId,
+        'user_email' => $userEmail,
+        'responses_count' => count($userResponses)
+    ]) . "\n", 
+    FILE_APPEND
+);
+
 // Chemins des fichiers
 $quizzesFile = __DIR__ . '/../../data/quizzes.txt';
 $userResponsesFile = __DIR__ . '/../../data/user_responses.txt';
@@ -33,17 +57,16 @@ $usersFile = __DIR__ . '/../../data/users.txt';
 try {
     // Charger les informations de l'utilisateur
     $users = file($usersFile, FILE_IGNORE_NEW_LINES);
-    $userInstitutionInfo = null;
+    $userInstitutionType = null;
+    $userInstitutionName = null;
+
     foreach ($users as $userLine) {
         $userData = json_decode($userLine, true);
         if ($userData['email'] === $userEmail) {
-            $userInstitutionInfo = $userData['affiliated_institution'] ?? null;
+            $userInstitutionType = $userData['affiliated_institution']['type'] ?? null;
+            $userInstitutionName = $userData['affiliated_institution']['name'] ?? null;
             break;
         }
-    }
-
-    if (!$userInstitutionInfo) {
-        throw new Exception('Informations d\'institution introuvables');
     }
 
     // Charger le quiz
@@ -59,12 +82,26 @@ try {
     }
 
     if (!$foundQuiz) {
+        file_put_contents(__DIR__ . '/debug_submit.log', 
+            date('[Y-m-d H:i:s] ') . "Erreur : Quiz non trouvé\n", 
+            FILE_APPEND
+        );
         throw new Exception('Quiz non trouvé');
     }
 
+    // Log des informations du quiz et de l'utilisateur
+    file_put_contents(__DIR__ . '/debug_submit.log', 
+        date('[Y-m-d H:i:s] ') . "Détails du quiz et de l'utilisateur : " . json_encode([
+            'quiz_title' => $foundQuiz['title'],
+            'user_institution_type' => $userInstitutionType,
+            'user_institution_name' => $userInstitutionName
+        ]) . "\n", 
+        FILE_APPEND
+    );
+
     // Vérifier si c'est un quiz d'entreprise
     $isCompanyQuiz = 
-        ($userInstitutionInfo['type'] === 'entreprise') || 
+        ($userInstitutionType === 'entreprise') || 
         (isset($foundQuiz['type']) && $foundQuiz['type'] === 'company');
 
     // Préparer les données de réponse
@@ -106,6 +143,12 @@ try {
         $userResponseData['total_points'] = null;
     }
 
+    // Log des données de réponse avant sauvegarde
+    file_put_contents(__DIR__ . '/debug_submit.log', 
+        date('[Y-m-d H:i:s] ') . "Données de réponse : " . json_encode($userResponseData) . "\n", 
+        FILE_APPEND
+    );
+
     // Ajouter la réponse au fichier
     file_put_contents(
         $userResponsesFile, 
@@ -121,7 +164,12 @@ try {
     ]);
 
 } catch (Exception $e) {
-    error_log('Erreur dans submit_quiz.php : ' . $e->getMessage());
+    // Log de l'erreur
+    file_put_contents(__DIR__ . '/debug_submit.log', 
+        date('[Y-m-d H:i:s] ') . "Erreur : " . $e->getMessage() . "\n", 
+        FILE_APPEND
+    );
+    
     http_response_code(500);
     echo json_encode([
         'success' => false, 

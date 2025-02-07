@@ -1056,6 +1056,9 @@ button:not(:disabled):active {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
+    position: relative;
+    z-index: 10;
+    
 }
 
 .edit-profile-btn:hover {

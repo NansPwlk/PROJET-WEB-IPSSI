@@ -1,0 +1,12 @@
+[2025-02-07 10:08:54] Début de la soumission du quiz
+[2025-02-07 10:08:54] Informations reçues : {"quiz_id":"67a4e8ea85893","user_email":"levy@gmail.com","responses_count":1}
+[2025-02-07 10:08:54] Détails du quiz et de l'utilisateur : {"quiz_title":"TESTO","user_institution_type":"ecole","user_institution_name":"IPSSI"}
+[2025-02-07 10:08:54] Données de réponse : {"user_email":"levy@gmail.com","quiz_id":"67a4e8ea85893","quiz_title":"TESTO","responses":[1],"is_survey":false,"completed_at":"2025-02-07 10:08:54","score":1,"total_points":1}
+[2025-02-07 10:11:38] Début de la soumission du quiz
+[2025-02-07 10:11:38] Informations reçues : {"quiz_id":"67a5a33f78132","user_email":"levy@gmail.com","responses_count":2}
+[2025-02-07 10:11:38] Détails du quiz et de l'utilisateur : {"quiz_title":"jh","user_institution_type":"ecole","user_institution_name":"IPSSI"}
+[2025-02-07 10:11:38] Données de réponse : {"user_email":"levy@gmail.com","quiz_id":"67a5a33f78132","quiz_title":"jh","responses":[0,0],"is_survey":false,"completed_at":"2025-02-07 10:11:38","score":1,"total_points":2}
+[2025-02-07 10:13:32] Début de la soumission du quiz
+[2025-02-07 10:13:32] Informations reçues : {"quiz_id":"67a5cf2d47fe9","user_email":"levy@gmail.com","responses_count":1}
+[2025-02-07 10:13:32] Détails du quiz et de l'utilisateur : {"quiz_title":"Pr\u00e9sentation Test","user_institution_type":"ecole","user_institution_name":"IPSSI"}
+[2025-02-07 10:13:32] Données de réponse : {"user_email":"levy@gmail.com","quiz_id":"67a5cf2d47fe9","quiz_title":"Pr\u00e9sentation Test","responses":[0],"is_survey":false,"completed_at":"2025-02-07 10:13:32","score":1,"total_points":1}

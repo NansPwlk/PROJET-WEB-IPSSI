@@ -22,3 +22,129 @@
 [2025-02-07 06:08:58] Résultat trouvé : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5a33f78132","quiz_title":"jh","responses":[0,0],"score":1,"total_points":2,"completed_at":"2025-02-07 06:08:58"}
 [2025-02-07 06:09:00] Début de la requête
 [2025-02-07 06:09:00] Erreur : ID du quiz manquant
+[2025-02-07 10:06:25] Début de la requête de résultats
+[2025-02-07 10:06:25] Recherche des résultats - Quiz ID: 67a587e56e60f, Email: levy@gmail.com
+[2025-02-07 10:06:25] Nombre total de réponses : 26
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4e7272d1b4","is_survey":"N\/A"}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4e99a60453","is_survey":"N\/A"}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4e99a60453","is_survey":"N\/A"}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4e8ea85893","is_survey":"N\/A"}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a593d0d7ae1","is_survey":"N\/A"}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4f2d4583c5","is_survey":"N\/A"}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a587e56e60f","is_survey":"N\/A"}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a59ef8b1443","is_survey":"N\/A"}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a59ef8b1443","is_survey":"N\/A"}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5a175ee746","is_survey":"N\/A"}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5a2a7578dc","is_survey":"N\/A"}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5a33f78132","is_survey":"N\/A"}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a58a6044dec","is_survey":"N\/A"}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a5a5191ced5","is_survey":"N\/A"}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a5a7e275629","is_survey":"N\/A"}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a5a7e275629","is_survey":"N\/A"}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a5a7e275629","is_survey":true}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a5ac7338ffc","is_survey":true}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5b0ac2f4ba","is_survey":false}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5b49b400cf","is_survey":false}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5b49b400cf","is_survey":false}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5cf2d47fe9","is_survey":false}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"levy@gmail.com","quiz_id":"67a4e99a60453","is_survey":false}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"levy@gmail.com","quiz_id":"67a5a175ee746","is_survey":false}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"levy@gmail.com","quiz_id":"67a5a2a7578dc","is_survey":false}
+[2025-02-07 10:06:25] Réponse examinée : {"user_email":"levy@gmail.com","quiz_id":"67a587e56e60f","is_survey":false}
+[2025-02-07 10:06:25] Résultat final : {"user_email":"levy@gmail.com","quiz_id":"67a587e56e60f","quiz_title":"ert","responses":[0],"is_survey":false,"completed_at":"2025-02-07 10:05:08","score":0,"total_points":1}
+[2025-02-07 10:06:36] Début de la requête de résultats
+[2025-02-07 10:06:36] Recherche des résultats - Quiz ID: 67a4e7272d1b4, Email: levy@gmail.com
+[2025-02-07 10:06:36] Nombre total de réponses : 27
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4e7272d1b4","is_survey":"N\/A"}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4e99a60453","is_survey":"N\/A"}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4e99a60453","is_survey":"N\/A"}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4e8ea85893","is_survey":"N\/A"}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a593d0d7ae1","is_survey":"N\/A"}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4f2d4583c5","is_survey":"N\/A"}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a587e56e60f","is_survey":"N\/A"}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a59ef8b1443","is_survey":"N\/A"}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a59ef8b1443","is_survey":"N\/A"}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5a175ee746","is_survey":"N\/A"}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5a2a7578dc","is_survey":"N\/A"}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5a33f78132","is_survey":"N\/A"}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a58a6044dec","is_survey":"N\/A"}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a5a5191ced5","is_survey":"N\/A"}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a5a7e275629","is_survey":"N\/A"}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a5a7e275629","is_survey":"N\/A"}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a5a7e275629","is_survey":true}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a5ac7338ffc","is_survey":true}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5b0ac2f4ba","is_survey":false}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5b49b400cf","is_survey":false}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5b49b400cf","is_survey":false}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5cf2d47fe9","is_survey":false}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"levy@gmail.com","quiz_id":"67a4e99a60453","is_survey":false}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"levy@gmail.com","quiz_id":"67a5a175ee746","is_survey":false}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"levy@gmail.com","quiz_id":"67a5a2a7578dc","is_survey":false}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"levy@gmail.com","quiz_id":"67a587e56e60f","is_survey":false}
+[2025-02-07 10:06:36] Réponse examinée : {"user_email":"levy@gmail.com","quiz_id":"67a4e7272d1b4","is_survey":false}
+[2025-02-07 10:06:36] Résultat final : {"user_email":"levy@gmail.com","quiz_id":"67a4e7272d1b4","quiz_title":"sdf","responses":[0,3],"is_survey":false,"completed_at":"2025-02-07 10:06:36","score":2,"total_points":2}
+[2025-02-07 10:08:46] Début de la requête de résultats
+[2025-02-07 10:08:46] Recherche des résultats - Quiz ID: 67a4e7272d1b4, Email: levy@gmail.com
+[2025-02-07 10:08:46] Nombre total de réponses : 27
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4e7272d1b4","is_survey":"N\/A"}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4e99a60453","is_survey":"N\/A"}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4e99a60453","is_survey":"N\/A"}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4e8ea85893","is_survey":"N\/A"}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a593d0d7ae1","is_survey":"N\/A"}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4f2d4583c5","is_survey":"N\/A"}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a587e56e60f","is_survey":"N\/A"}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a59ef8b1443","is_survey":"N\/A"}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a59ef8b1443","is_survey":"N\/A"}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5a175ee746","is_survey":"N\/A"}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5a2a7578dc","is_survey":"N\/A"}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5a33f78132","is_survey":"N\/A"}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a58a6044dec","is_survey":"N\/A"}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a5a5191ced5","is_survey":"N\/A"}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a5a7e275629","is_survey":"N\/A"}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a5a7e275629","is_survey":"N\/A"}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a5a7e275629","is_survey":true}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a5ac7338ffc","is_survey":true}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5b0ac2f4ba","is_survey":false}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5b49b400cf","is_survey":false}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5b49b400cf","is_survey":false}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5cf2d47fe9","is_survey":false}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"levy@gmail.com","quiz_id":"67a4e99a60453","is_survey":false}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"levy@gmail.com","quiz_id":"67a5a175ee746","is_survey":false}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"levy@gmail.com","quiz_id":"67a5a2a7578dc","is_survey":false}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"levy@gmail.com","quiz_id":"67a587e56e60f","is_survey":false}
+[2025-02-07 10:08:46] Réponse examinée : {"user_email":"levy@gmail.com","quiz_id":"67a4e7272d1b4","is_survey":false}
+[2025-02-07 10:08:46] Résultat final : {"user_email":"levy@gmail.com","quiz_id":"67a4e7272d1b4","quiz_title":"sdf","responses":[0,3],"is_survey":false,"completed_at":"2025-02-07 10:06:36","score":2,"total_points":2}
+[2025-02-07 10:08:48] Début de la requête de résultats
+[2025-02-07 10:08:48] Erreur : ID du quiz manquant
+[2025-02-07 10:08:54] Début de la requête de résultats
+[2025-02-07 10:08:54] Recherche des résultats - Quiz ID: 67a4e8ea85893, Email: levy@gmail.com
+[2025-02-07 10:08:54] Nombre total de réponses : 28
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4e7272d1b4","is_survey":"N\/A"}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4e99a60453","is_survey":"N\/A"}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4e99a60453","is_survey":"N\/A"}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4e8ea85893","is_survey":"N\/A"}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a593d0d7ae1","is_survey":"N\/A"}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4f2d4583c5","is_survey":"N\/A"}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a587e56e60f","is_survey":"N\/A"}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a59ef8b1443","is_survey":"N\/A"}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a59ef8b1443","is_survey":"N\/A"}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5a175ee746","is_survey":"N\/A"}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5a2a7578dc","is_survey":"N\/A"}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5a33f78132","is_survey":"N\/A"}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a58a6044dec","is_survey":"N\/A"}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a5a5191ced5","is_survey":"N\/A"}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a5a7e275629","is_survey":"N\/A"}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a5a7e275629","is_survey":"N\/A"}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a5a7e275629","is_survey":true}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"paul@gpt.triche","quiz_id":"67a5ac7338ffc","is_survey":true}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5b0ac2f4ba","is_survey":false}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5b49b400cf","is_survey":false}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5b49b400cf","is_survey":false}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5cf2d47fe9","is_survey":false}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"levy@gmail.com","quiz_id":"67a4e99a60453","is_survey":false}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"levy@gmail.com","quiz_id":"67a5a175ee746","is_survey":false}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"levy@gmail.com","quiz_id":"67a5a2a7578dc","is_survey":false}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"levy@gmail.com","quiz_id":"67a587e56e60f","is_survey":false}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"levy@gmail.com","quiz_id":"67a4e7272d1b4","is_survey":false}
+[2025-02-07 10:08:54] Réponse examinée : {"user_email":"levy@gmail.com","quiz_id":"67a4e8ea85893","is_survey":false}
+[2025-02-07 10:08:54] Résultat final : {"user_email":"levy@gmail.com","quiz_id":"67a4e8ea85893","quiz_title":"TESTO","responses":[1],"is_survey":false,"completed_at":"2025-02-07 10:08:54","score":1,"total_points":1}

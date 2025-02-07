@@ -110,7 +110,7 @@ function displayCompletedQuizzes(quizzes) {
                 <span class="score">Score: ${quiz.score || 0}/${quiz.total_points || 0}</span>
                 <span class="percentage">${quiz.total_points ? Math.round(quiz.score/quiz.total_points * 100) : 0}%</span>
             </div>
-            <button class="view-result-btn" onclick="viewQuizResult('${quiz.quiz_title}')">
+            <button class="view-result-btn" onclick="viewQuizResult('${quiz.quiz_id}')">
                 Voir les détails
             </button>
         </div>
@@ -121,7 +121,6 @@ function startQuiz(quizId) {
     window.location.href = `/public/take-quiz.html?quiz_id=${quizId}`;
 }
 
-function viewQuizResult(quizTitle) {
-    // Note: Cette méthode devrait être améliorée pour passer l'ID du quiz si nécessaire
-    alert(`Détails du quiz: ${quizTitle}`);
+function viewQuizResult(quizId) {
+    window.location.href = `/public/quiz-result.html?quiz_id=${quizId}`;
 }

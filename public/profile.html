@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzeo - Profil</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dotted-bg"></div>
+    <div class="profile-container login-container">
+        <div class="logo-container">
+            <img src="assets/logo.png" alt="Quizzeo Logo">
+        </div>
+        <form id="profileForm">
+            <h2 style="text-align: center; color: var(--color-purple); margin-bottom: 2rem;">Modifier mon profil</h2>
+            
+            <div class="input-group">
+                <label for="firstname">Prénom</label>
+                <input type="text" id="firstname" name="firstname" required>
+                <div class="error-message" id="firstname-error"></div>
+            </div>
+            
+            <div class="input-group">
+                <label for="lastname">Nom</label>
+                <input type="text" id="lastname" name="lastname" required>
+                <div class="error-message" id="lastname-error"></div>
+            </div>
+            
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error-message" id="email-error"></div>
+            </div>
+            
+            <div class="input-group">
+                <label for="new-password">Nouveau mot de passe (optionnel)</label>
+                <input type="password" id="new-password" name="new-password">
+                <div class="error-message" id="new-password-error"></div>
+            </div>
+            
+            <div class="input-group">
+                <label for="confirm-password">Confirmer le nouveau mot de passe</label>
+                <input type="password" id="confirm-password" name="confirm-password">
+                <div class="error-message" id="confirm-password-error"></div>
+            </div>
+            
+            <button type="submit" class="login-button">Enregistrer les modifications</button>
+            <a href="index.html" class="login-button" style="background: var(--color-gray); text-decoration: none; text-align: center; margin-top: 1rem;">Retour</a>
+        </form>
+    </div>
+    <script src="js/profile.js"></script>
+</body>
+</html>
