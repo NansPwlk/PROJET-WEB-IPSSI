@@ -21,7 +21,7 @@ async function loadCompanyInfo() {
 
 async function loadQuizzes() {
     try {
-        const response = await fetch('/php/quiz/get_company_quizzes.php');
+        const response = await fetch('/php/auth/get_company_quizzes.php');
         const data = await response.json();
         
         const quizList = document.getElementById('quizList');

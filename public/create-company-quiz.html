@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzeo - Créer un Quiz</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body>
+    <div class="dotted-bg"></div>
+    <div class="quiz-creation-container">
+        <div class="logo-container">
+            <img src="/public/assets/logo.png" alt="Quizzeo Logo">
+        </div>
+        
+        <div class="quiz-form">
+            <h1>Créer un nouveau Quiz</h1>
+            
+            <form id="quizForm">
+                <div class="input-group">
+                    <label for="quiz-title">Titre du Quiz</label>
+                    <input type="text" id="quiz-title" name="title" required>
+                </div>
+
+                <div class="questions-container" id="questions">
+                    <!-- Les questions seront ajoutées ici -->
+                </div>
+
+                <div class="add-question-buttons">
+                    <button type="button" class="add-question-btn" onclick="addQuestion('qcm')">
+                        Ajouter une question QCM
+                    </button>
+                    <button type="button" class="add-question-btn" onclick="addQuestion('free')">
+                        Ajouter une question à réponse libre
+                    </button>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="secondary-btn" onclick="saveAsDraft()">
+                        Enregistrer comme brouillon
+                    </button>
+                    <button type="submit" class="primary-btn">
+                        Publier le Quiz
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Template pour une question QCM -->
+    <template id="qcm-question-template">
+        <div class="question-box" data-type="qcm">
+            <div class="question-header">
+                <h3>Question <span class="question-number"></span></h3>
+                <button type="button" class="delete-question" onclick="deleteQuestion(this)">×</button>
+            </div>
+
+            <div class="input-group">
+                <label>Question</label>
+                <input type="text" name="questions[]" required>
+            </div>
+
+            <div class="input-group">
+                <label>Points</label>
+                <input type="number" name="points[]" min="1" value="1" required>
+            </div>
+
+            <div class="options-container">
+                <div class="option">
+                    <input type="radio" name="correct_answer_$INDEX" value="0" required>
+                    <input type="text" name="options_$INDEX[]" placeholder="Option 1" required>
+                </div>
+                <div class="option">
+                    <input type="radio" name="correct_answer_$INDEX" value="1" required>
+                    <input type="text" name="options_$INDEX[]" placeholder="Option 2" required>
+                </div>
+                <div class="option">
+                    <input type="radio" name="correct_answer_$INDEX" value="2" required>
+                    <input type="text" name="options_$INDEX[]" placeholder="Option 3" required>
+                </div>
+                <div class="option">
+                    <input type="radio" name="correct_answer_$INDEX" value="3" required>
+                    <input type="text" name="options_$INDEX[]" placeholder="Option 4" required>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Template pour une question à réponse libre -->
+    <template id="free-question-template">
+        <div class="question-box" data-type="free">
+            <div class="question-header">
+                <h3>Question libre <span class="question-number"></span></h3>
+                <button type="button" class="delete-question" onclick="deleteQuestion(this)">×</button>
+            </div>
+
+            <div class="input-group">
+                <label>Question</label>
+                <input type="text" name="questions[]" required>
+            </div>
+
+            <div class="input-group">
+                <label>Points</label>
+                <input type="number" name="points[]" min="1" value="1" required>
+            </div>
+
+            <div class="input-group">
+                <label>Description (optionnelle)</label>
+                <textarea name="descriptions[]" placeholder="Précisions sur la réponse attendue..."></textarea>
+            </div>
+        </div>
+    </template>
+
+    <script src="/public/js/create-company-quiz.js"></script>
+</body>
+</html>

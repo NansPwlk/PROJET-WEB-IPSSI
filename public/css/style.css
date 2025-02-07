@@ -864,6 +864,43 @@ button:not(:disabled):active {
     color: white;
 }
 
+/* Styles spécifiques au quiz entreprise */
+.add-question-buttons {
+    display: flex;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.add-question-btn {
+    flex: 1;
+    padding: 1rem;
+    background: var(--color-purple);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.add-question-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.question-box[data-type="free"] {
+    background: #f8f9fa;
+    border-left: 4px solid var(--color-orange);
+}
+
+.question-box textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.75rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    resize: vertical;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .admin-nav {
