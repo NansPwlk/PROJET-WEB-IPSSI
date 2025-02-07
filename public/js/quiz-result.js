@@ -34,15 +34,28 @@ async function fetchQuizResults(quizId) {
             console.log('Données JSON parsées :', data);
         } catch (parseError) {
             console.error('Erreur de parsing JSON:', parseError);
+            console.error('Réponse reçue :', text);
             showErrorMessage('Erreur de chargement des résultats');
             return;
         }
 
         if (data.success) {
-            console.log('Résultats reçus :', data.quiz_result);
-            displayQuizResults(data.quiz_result);
+            // Debuggage : vérifier les résultats
+            console.log('Résultats reçus :', data.quiz_results);
+            
+            // Si plusieurs résultats, prendre le premier
+            const resultData = Array.isArray(data.quiz_results) 
+                ? data.quiz_results[0] 
+                : data.quiz_results;
+
+            console.log('Résultat à afficher :', resultData);
+            
+            if (resultData) {
+                displayQuizResults(resultData);
+            } else {
+                showErrorMessage('Aucun résultat trouvé');
+            }
         } else {
-            console.error('Erreur de chargement des résultats :', data.error);
             throw new Error(data.error || 'Impossible de charger les résultats');
         }
     } catch (error) {

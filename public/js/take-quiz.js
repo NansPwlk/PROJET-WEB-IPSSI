@@ -2,12 +2,15 @@
 let currentQuizData = null;
 let currentQuestionIndex = 0;
 let userResponses = [];
+let isSurvey = false;
 
 // Charger les détails du quiz au chargement de la page
 document.addEventListener('DOMContentLoaded', function() {
     // Récupérer l'ID du quiz depuis l'URL
     const urlParams = new URLSearchParams(window.location.search);
     const quizId = urlParams.get('quiz_id');
+
+    console.log('ID du quiz récupéré :', quizId);
 
     if (!quizId) {
         showErrorMessage('Aucun quiz sélectionné');
@@ -20,34 +23,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
 async function fetchQuizDetails(quizId) {
     try {
+        console.log('Tentative de récupération des détails du quiz :', quizId);
+        
         const response = await fetch(`/php/auth/get_quiz_details.php?quiz_id=${quizId}`);
         const text = await response.text();
         
-        console.log('Réponse brute du quiz:', text);
+        console.log('Réponse brute des détails du quiz:', text);
         
         let data;
         try {
             data = JSON.parse(text);
+            console.log('Données JSON parsées :', data);
         } catch (parseError) {
             console.error('Erreur de parsing JSON:', parseError);
-            showErrorMessage('Erreur de chargement du quiz');
+            console.error('Réponse reçue :', text);
+            showErrorMessage('Erreur de chargement des détails du quiz');
             return;
         }
 
         if (data.success) {
+            console.log('Détails du quiz reçus :', data.quiz);
             currentQuizData = data.quiz;
+            
+            // Détecter si c'est un quiz potentiellement de type sondage
+            isSurvey = currentQuizData.type === 'company';
+            
             initializeQuiz();
         } else {
-            throw new Error(data.error || 'Impossible de charger le quiz');
+            console.error('Erreur de chargement des détails :', data.error);
+            throw new Error(data.error || 'Impossible de charger les détails du quiz');
         }
     } catch (error) {
-        console.error('Erreur lors du chargement du quiz:', error);
-        showErrorMessage(error.message || 'Erreur lors du chargement du quiz');
+        console.error('Erreur lors du chargement des détails du quiz:', error);
+        showErrorMessage(error.message || 'Erreur lors du chargement des détails du quiz');
     }
 }
 
 function showErrorMessage(message) {
-    // Cacher le contenu du quiz
     document.querySelector('.quiz-container').innerHTML = `
         <div class="error-message-container">
             <h2>Erreur</h2>
@@ -110,29 +122,45 @@ function displayCurrentQuestion() {
             <div class="options-container">
     `;
 
-    // Ajouter les options de réponse
-    currentQuestion.options.forEach((option, index) => {
+    // Déterminer le type de question
+    const questionType = currentQuestion.type || (currentQuestion.options ? 'qcm' : 'free');
+    console.log('Type de question détecté:', questionType);
+
+    if (questionType === 'qcm' || currentQuestion.options) {
+        // Questions à choix multiples
+        currentQuestion.options.forEach((option, index) => {
+            questionHTML += `
+                <label class="option-label">
+                    <input 
+                        type="radio" 
+                        name="question-option" 
+                        value="${index}" 
+                        ${userResponses[currentQuestionIndex] === index ? 'checked' : ''}
+                        onchange="recordResponse(${index})"
+                    >
+                    ${option}
+                </label>
+            `;
+        });
+    } else {
+        // Questions à réponse libre
         questionHTML += `
-            <label class="option-label">
-                <input 
-                    type="radio" 
-                    name="question-option" 
-                    value="${index}" 
-                    ${userResponses[currentQuestionIndex] === index ? 'checked' : ''}
-                    onchange="recordResponse(${index})"
-                >
-                ${option}
-            </label>
+            <textarea 
+                class="free-text-answer" 
+                rows="4" 
+                placeholder="Saisissez votre réponse ici"
+                onchange="recordResponse(this.value)"
+            >${userResponses[currentQuestionIndex] || ''}</textarea>
         `;
-    });
+    }
 
     questionHTML += `</div></div>`;
     
     quizContent.innerHTML = questionHTML;
 }
 
-function recordResponse(optionIndex) {
-    userResponses[currentQuestionIndex] = optionIndex;
+function recordResponse(response) {
+    userResponses[currentQuestionIndex] = response;
 }
 
 function navigateQuestion(direction) {
@@ -146,7 +174,9 @@ function navigateQuestion(direction) {
 
 async function submitQuiz() {
     // Vérifier que toutes les questions ont été répondues
-    const unansweredQuestions = userResponses.filter(response => response === null);
+    const unansweredQuestions = userResponses.filter(response => 
+        response === null || (typeof response === 'string' && response.trim() === '')
+    );
     
     if (unansweredQuestions.length > 0) {
         alert('Veuillez répondre à toutes les questions avant de soumettre');
@@ -173,18 +203,25 @@ async function submitQuiz() {
             data = JSON.parse(text);
         } catch (parseError) {
             console.error('Erreur de parsing JSON:', parseError);
+            console.error('Réponse reçue :', text);
             showErrorMessage('Erreur lors de la soumission du quiz');
             return;
         }
 
         if (data.success) {
-            // Rediriger vers la page de résultats avec l'ID du quiz
-            window.location.href = `/public/quiz-result.html?quiz_id=${data.quiz_id}`;
+            // Pour les sondages, rediriger simplement vers le dashboard
+            if (data.is_survey) {
+                alert('Votre sondage a bien été soumis.');
+                window.location.href = '/public/user-dashboard.html';
+            } else {
+                // Pour les quiz normaux, aller à la page de résultats
+                window.location.href = `/public/quiz-result.html?quiz_id=${currentQuizData.id}`;
+            }
         } else {
-            throw new Error(data.error || 'Erreur lors de la soumission du quiz');
+            throw new Error(data.error || 'Erreur lors de la soumission');
         }
     } catch (error) {
-        console.error('Erreur lors de la soumission du quiz:', error);
-        showErrorMessage(error.message || 'Erreur lors de la soumission du quiz');
+        console.error('Erreur lors de la soumission:', error);
+        showErrorMessage(error.message || 'Erreur lors de la soumission');
     }
 }

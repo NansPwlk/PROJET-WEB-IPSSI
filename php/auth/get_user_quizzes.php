@@ -12,40 +12,40 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'utilisateur') {
 
 $quizzesFile = __DIR__ . '/../../data/quizzes.txt';
 $userResponsesFile = __DIR__ . '/../../data/user_responses.txt';
+$usersFile = __DIR__ . '/../../data/users.txt';
 
 try {
-    // Récupérer les informations de l'utilisateur avec des vérifications supplémentaires
+    // Récupérer les informations de l'utilisateur
     $userInfo = $_SESSION['user'];
-    
-    // Vérification et extraction des informations d'institution
-    $institutionInfo = $userInfo['affiliated_institution'] ?? null;
-    
-    if (!$institutionInfo) {
-        // Vérifier l'existence de l'institution dans les données utilisateur
-        error_log('Tentative de récupération de l\'institution depuis les données utilisateur');
-        
-        // Si institution manquante dans la session, essayer de la trouver dans le fichier users.txt
-        $usersFile = __DIR__ . '/../../data/users.txt';
-        $users = file($usersFile, FILE_IGNORE_NEW_LINES);
-        
-        foreach ($users as $userLine) {
-            $userData = json_decode($userLine, true);
-            if ($userData['email'] === $userInfo['email']) {
-                $institutionInfo = $userData['affiliated_institution'] ?? null;
+    $userEmail = $userInfo['email'];
+
+    // Charger les informations de l'utilisateur depuis le fichier users.txt
+    $users = file($usersFile, FILE_IGNORE_NEW_LINES);
+    $userFound = false;
+    $institutionInfo = null;
+
+    foreach ($users as $userLine) {
+        $userData = json_decode($userLine, true);
+        if ($userData['email'] === $userEmail) {
+            // Vérifier la présence de l'institution
+            if (isset($userData['affiliated_institution'])) {
+                $institutionInfo = $userData['affiliated_institution'];
+                $userFound = true;
                 break;
             }
         }
-        
-        if (!$institutionInfo) {
-            throw new Exception('Informations d\'institution introuvables');
-        }
     }
 
-    $userEmail = $userInfo['email'];
+    if (!$userFound || !$institutionInfo) {
+        error_log('Détails utilisateur : ' . print_r($userInfo, true));
+        throw new Exception('Informations d\'institution introuvables pour l\'utilisateur');
+    }
+
     $institutionType = $institutionInfo['type'];
     $institutionName = $institutionInfo['name'];
+    $companyActivityDomain = $institutionInfo['activityDomain'] ?? null;
     
-    error_log('Informations d\'institution : ' . print_r($institutionInfo, true));
+    error_log('Informations d\'institution récupérées : ' . print_r($institutionInfo, true));
 
     $availableQuizzes = [];
     $completedQuizzes = [];
@@ -77,8 +77,12 @@ try {
                     (isset($quizData['creator_email']) && strpos($quizData['creator_email'], '@ecole.net') !== false);
             } elseif ($institutionType === 'entreprise') {
                 $matchInstitution = 
+                    // Quiz de l'entreprise
                     (isset($quizData['company_name']) && $quizData['company_name'] === $institutionName) ||
-                    (isset($quizData['creator_email']) && strpos($quizData['creator_email'], '@entreprise.net') !== false);
+                    // Quiz génériques d'entreprise
+                    (isset($quizData['type']) && $quizData['type'] === 'company') ||
+                    // Quiz lié au domaine d'activité
+                    (isset($quizData['activityDomain']) && $quizData['activityDomain'] === $companyActivityDomain);
             }
 
             // Vérification du statut du quiz

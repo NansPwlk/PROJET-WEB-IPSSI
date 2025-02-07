@@ -10,3 +10,12 @@
 {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5a175ee746","quiz_title":"test encore","responses":[0,0],"score":1,"total_points":2,"completed_at":"2025-02-07 06:00:56"}
 {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5a2a7578dc","quiz_title":"encoreet encoer","responses":[3,0,3],"score":2,"total_points":3,"completed_at":"2025-02-07 06:05:55"}
 {"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5a33f78132","quiz_title":"jh","responses":[0,0],"score":1,"total_points":2,"completed_at":"2025-02-07 06:08:58"}
+{"user_email":"paul@gpt.triche","quiz_id":"67a58a6044dec","quiz_title":"test","responses":[0,1],"score":0,"total_points":2,"completed_at":"2025-02-07 06:21:35"}
+{"user_email":"paul@gpt.triche","quiz_id":"67a5a5191ced5","quiz_title":"testtetefze","responses":[1,2],"score":0,"total_points":2,"completed_at":"2025-02-07 06:21:45"}
+{"user_email":"paul@gpt.triche","quiz_id":"67a5a7e275629","quiz_title":"zerze","responses":[0,"oui enfin"],"score":2,"total_points":2,"completed_at":"2025-02-07 06:39:19"}
+{"user_email":"paul@gpt.triche","quiz_id":"67a5a7e275629","quiz_title":"zerze","responses":[0,"oui enfin"],"score":2,"total_points":2,"completed_at":"2025-02-07 06:39:24"}
+{"user_email":"paul@gpt.triche","quiz_id":"67a5a7e275629","quiz_title":"zerze","responses":[0,"oui enfin"],"is_survey":true,"completed_at":"2025-02-07 06:46:16","score":null,"total_points":null}
+{"user_email":"paul@gpt.triche","quiz_id":"67a5ac7338ffc","quiz_title":"qdfqsfqsf","responses":[1,"sdfg"],"is_survey":true,"completed_at":"2025-02-07 06:47:44","score":null,"total_points":null}
+{"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5b0ac2f4ba","quiz_title":"sdcqscqscqscqscqscqs","responses":[0,2],"is_survey":false,"completed_at":"2025-02-07 07:18:39","score":0,"total_points":2}
+{"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5b49b400cf","quiz_title":"TESTSD","responses":[0],"is_survey":false,"completed_at":"2025-02-07 07:22:30","score":1,"total_points":1}
+{"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5b49b400cf","quiz_title":"TESTSD","responses":[0],"is_survey":false,"completed_at":"2025-02-07 07:26:27","score":1,"total_points":1}

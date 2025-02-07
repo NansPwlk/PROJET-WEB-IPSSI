@@ -1,6 +1,8 @@
 <?php
 session_start();
 header('Content-Type: application/json');
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 // Vérifier l'authentification
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'utilisateur') {
@@ -32,23 +34,31 @@ try {
         
         // Vérifier si la réponse correspond à l'utilisateur
         if ($responseData['user_email'] === $userEmail) {
-            // Formater la date avec le format local
-            $completedAt = DateTime::createFromFormat('Y-m-d H:i:s', $responseData['completed_at']);
-            $formattedDate = $completedAt ? $completedAt->format('d/m/Y') : 'Date inconnue';
+            // Vérifier et formater la date de complétion
+            try {
+                $completedAt = new DateTime($responseData['completed_at']);
+                $formattedDate = $completedAt->format('d/m/Y');
+            } catch (Exception $e) {
+                $formattedDate = 'Date inconnue';
+            }
             
-            $userQuizResponses[] = [
-                'quiz_title' => $responseData['quiz_title'] ?? 'Quiz sans titre',
-                'completed_at' => $formattedDate,
-                'score' => $responseData['score'] ?? 0,
-                'total_points' => $responseData['total_points'] ?? 0
-            ];
+            // Ne pas ajouter les sondages d'entreprise
+            if (!($responseData['is_survey'] ?? false)) {
+                $userQuizResponses[] = [
+                    'quiz_title' => $responseData['quiz_title'] ?? 'Quiz sans titre',
+                    'completed_at' => $formattedDate,
+                    'score' => $responseData['score'] ?? 0,
+                    'total_points' => $responseData['total_points'] ?? 0
+                ];
+            }
         }
     }
 
     // Trier les quiz par date de complétion (du plus récent au plus ancien)
     usort($userQuizResponses, function($a, $b) {
-        return strtotime(str_replace('/', '-', $b['completed_at'])) - 
-                strtotime(str_replace('/', '-', $a['completed_at']));
+        $dateA = DateTime::createFromFormat('d/m/Y', $a['completed_at']);
+        $dateB = DateTime::createFromFormat('d/m/Y', $b['completed_at']);
+        return $dateB <=> $dateA;
     });
 
     // Répondre avec les résultats
