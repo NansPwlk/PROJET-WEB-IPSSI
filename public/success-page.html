@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quizzeo - Inscription réussie</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/public/css/style.css">
 </head>
 <body>
     <div class="dotted-bg"></div>
     <div class="login-container">
         <div class="logo-container">
-            <img src="assets/logo.png" alt="Quizzeo Logo">
+            <img src="/public/assets/logo.png" alt="Quizzeo Logo">
         </div>
 
         <!-- Message de base pour tous les utilisateurs -->
@@ -37,6 +37,25 @@
             </form>
         </div>
 
+        <!-- Formulaire spécifique pour les entreprises -->
+        <div id="entreprise-form" style="display: none;">
+            <form id="entreprise-details-form">
+                <div class="input-group">
+                    <label for="company-name">Nom de l'entreprise</label>
+                    <input type="text" id="company-name" name="company-name" required>
+                    <div class="error-message" id="company-name-error"></div>
+                </div>
+
+                <div class="input-group">
+                    <label for="activity-domain">Domaine d'activité</label>
+                    <input type="text" id="activity-domain" name="activity-domain" required>
+                    <div class="error-message" id="activity-domain-error"></div>
+                </div>
+
+                <button type="submit" class="login-button">Finaliser l'inscription</button>
+            </form>
+        </div>
+
         <!-- Bouton de redirection pour les autres rôles -->
         <div id="default-redirect" style="text-align: center; display: none;">
             <p style="font-size: 1.2rem; margin-bottom: 2rem;">Place au quiz !</p>
@@ -46,14 +65,15 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Récupérer le rôle de l'utilisateur depuis la session ou l'URL
+           // Récupérer le rôle de l'utilisateur depuis la session ou l'URL
             const userRole = new URLSearchParams(window.location.search).get('role');
 
             if (userRole === 'ecole') {
                 document.getElementById('ecole-form').style.display = 'block';
+                document.getElementById('entreprise-form').style.display = 'none';
                 document.getElementById('default-redirect').style.display = 'none';
 
-                // Gestion du formulaire école
+               // Gestion du formulaire école
                 const ecoleForm = document.getElementById('ecole-details-form');
                 ecoleForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
@@ -71,7 +91,7 @@
                                 schoolName,
                                 schoolCity
                             })
-                        });;
+                        });
 
                         if (response.ok) {
                             window.location.href = '/public/ecole-dashboard.html';
@@ -83,8 +103,44 @@
                         alert('Erreur lors de la mise à jour des informations');
                     }
                 });
+            } else if (userRole === 'entreprise') {
+                document.getElementById('ecole-form').style.display = 'none';
+                document.getElementById('entreprise-form').style.display = 'block';
+                document.getElementById('default-redirect').style.display = 'none';
+
+               // Gestion du formulaire entreprise
+                const entrepriseForm = document.getElementById('entreprise-details-form');
+                entrepriseForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+
+                    const companyName = document.getElementById('company-name').value;
+                    const activityDomain = document.getElementById('activity-domain').value;
+
+                    try {
+                        const response = await fetch('/php/auth/update_company_details.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                companyName,
+                                activityDomain
+                            })
+                        });
+
+                        if (response.ok) {
+                            window.location.href = '/public/entreprise-dashboard.html';
+                        } else {
+                            alert('Erreur lors de la mise à jour des informations');
+                        }
+                    } catch (error) {
+                        console.error('Erreur:', error);
+                        alert('Erreur lors de la mise à jour des informations');
+                    }
+                });
             } else {
                 document.getElementById('ecole-form').style.display = 'none';
+                document.getElementById('entreprise-form').style.display = 'none';
                 document.getElementById('default-redirect').style.display = 'block';
             }
         });

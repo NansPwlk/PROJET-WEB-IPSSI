@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzeo - Dashboard Entreprise</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body>
+    <div class="dotted-bg"></div>
+    <div class="dashboard-container">
+        <div class="logo-container">
+            <img src="/public/assets/logo.png" alt="Quizzeo Logo">
+        </div>
+
+        <div class="company-info">
+            <h1>Dashboard Entreprise</h1>
+            <p>Bienvenue, <span id="companyName"></span></p>
+            <p>Domaine : <span id="activityDomain"></span></p>
+        </div>
+
+        <div class="dashboard-actions">
+            <button class="create-quiz-btn" onclick="createNewQuiz()">
+                Créer un nouveau Quiz
+            </button>
+        </div>
+
+        <div class="quiz-list">
+            <h2>Mes Quiz</h2>
+            <div class="quiz-grid" id="quizList">
+                <!-- Les quiz seront insérés ici dynamiquement -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/public/js/entreprise-dashboard.js"></script>
+</body>
+</html>
