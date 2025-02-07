@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzeo - Dashboard Utilisateur</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body>
+    <div class="dotted-bg"></div>
+    <div class="dashboard-container">
+        <div class="logo-container">
+            <img src="/public/assets/logo.png" alt="Quizzeo Logo">
+        </div>
+
+        <div class="user-info">
+            <h1>Dashboard Utilisateur</h1>
+            <p>Bienvenue, <span id="userName"></span></p>
+            <p>Institution : <span id="institutionName"></span></p>
+        </div>
+
+        <div class="quiz-section">
+            <h2>Quiz disponibles</h2>
+            <div class="available-quizzes" id="availableQuizzes">
+                <!-- Les quiz disponibles seront affichés ici -->
+            </div>
+
+            <h2>Quiz complétés</h2>
+            <div class="completed-quizzes" id="completedQuizzes">
+                <!-- Les quiz complétés seront affichés ici -->
+            </div>
+        </div>
+
+        <div class="profile-section">
+            <h2>Mon Profil</h2>
+            <button class="edit-profile-btn" onclick="window.location.href='/public/edit-profile.html'">
+                Modifier mon profil
+            </button>
+        </div>
+    </div>
+
+    <script src="/public/js/user-dashboard.js"></script>
+</body>
+</html>

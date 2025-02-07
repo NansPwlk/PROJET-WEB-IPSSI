@@ -56,6 +56,31 @@
             </form>
         </div>
 
+        <!-- Formulaire spécifique pour les utilisateurs simples -->
+        <div id="user-form" style="display: none;">
+            <form id="user-details-form">
+                <div class="input-group">
+                    <label for="institution-type">Type d'institution</label>
+                    <select id="institution-type" name="institution-type" onchange="loadInstitutions()" required>
+                        <option value="">Sélectionnez un type</option>
+                        <option value="ecole">École</option>
+                        <option value="entreprise">Entreprise</option>
+                    </select>
+                    <div class="error-message" id="institution-type-error"></div>
+                </div>
+
+                <div class="input-group">
+                    <label for="institution">Sélectionnez votre institution</label>
+                    <select id="institution" name="institution" required>
+                        <option value="">Choisissez d'abord un type</option>
+                    </select>
+                    <div class="error-message" id="institution-error"></div>
+                </div>
+
+                <button type="submit" class="login-button">Finaliser l'inscription</button>
+            </form>
+        </div>
+
         <!-- Bouton de redirection pour les autres rôles -->
         <div id="default-redirect" style="text-align: center; display: none;">
             <p style="font-size: 1.2rem; margin-bottom: 2rem;">Place au quiz !</p>
@@ -65,15 +90,16 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-           // Récupérer le rôle de l'utilisateur depuis la session ou l'URL
+            // Récupérer le rôle de l'utilisateur depuis la session ou l'URL
             const userRole = new URLSearchParams(window.location.search).get('role');
 
             if (userRole === 'ecole') {
                 document.getElementById('ecole-form').style.display = 'block';
                 document.getElementById('entreprise-form').style.display = 'none';
+                document.getElementById('user-form').style.display = 'none';
                 document.getElementById('default-redirect').style.display = 'none';
 
-               // Gestion du formulaire école
+                // Gestion du formulaire école
                 const ecoleForm = document.getElementById('ecole-details-form');
                 ecoleForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
@@ -94,7 +120,7 @@
                         });
 
                         if (response.ok) {
-                            window.location.href = '/public/ecole-dashboard.html';
+                            window.location.href = '/public/Home.html';
                         } else {
                             alert('Erreur lors de la mise à jour des informations');
                         }
@@ -106,9 +132,10 @@
             } else if (userRole === 'entreprise') {
                 document.getElementById('ecole-form').style.display = 'none';
                 document.getElementById('entreprise-form').style.display = 'block';
+                document.getElementById('user-form').style.display = 'none';
                 document.getElementById('default-redirect').style.display = 'none';
 
-               // Gestion du formulaire entreprise
+                // Gestion du formulaire entreprise
                 const entrepriseForm = document.getElementById('entreprise-details-form');
                 entrepriseForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
@@ -129,7 +156,43 @@
                         });
 
                         if (response.ok) {
-                            window.location.href = '/public/entreprise-dashboard.html';
+                            window.location.href = '/public/Home.html';
+                        } else {
+                            alert('Erreur lors de la mise à jour des informations');
+                        }
+                    } catch (error) {
+                        console.error('Erreur:', error);
+                        alert('Erreur lors de la mise à jour des informations');
+                    }
+                });
+            } else if (userRole === 'utilisateur') {
+                document.getElementById('ecole-form').style.display = 'none';
+                document.getElementById('entreprise-form').style.display = 'none';
+                document.getElementById('user-form').style.display = 'block';
+                document.getElementById('default-redirect').style.display = 'none';
+
+                // Gérer le formulaire utilisateur
+                const userForm = document.getElementById('user-details-form');
+                userForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+
+                    const institutionType = document.getElementById('institution-type').value;
+                    const institutionId = document.getElementById('institution').value;
+
+                    try {
+                        const response = await fetch('/php/auth/update_user_institution.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                institutionType,
+                                institutionId
+                            })
+                        });
+
+                        if (response.ok) {
+                            window.location.href = '/public/user-dashboard.html';
                         } else {
                             alert('Erreur lors de la mise à jour des informations');
                         }
@@ -141,9 +204,35 @@
             } else {
                 document.getElementById('ecole-form').style.display = 'none';
                 document.getElementById('entreprise-form').style.display = 'none';
+                document.getElementById('user-form').style.display = 'none';
                 document.getElementById('default-redirect').style.display = 'block';
             }
         });
+
+        // Fonction pour charger les institutions
+        async function loadInstitutions() {
+            const type = document.getElementById('institution-type').value;
+            const institutionSelect = document.getElementById('institution');
+            institutionSelect.innerHTML = '<option value="">Chargement...</option>';
+
+            try {
+                const response = await fetch(`/php/auth/get_institutions.php?type=${type}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    institutionSelect.innerHTML = '<option value="">Sélectionnez une institution</option>' +
+                        data.institutions.map(inst => `
+                            <option value="${inst.id}">
+                                ${type === 'ecole' ? inst.schoolName : inst.companyName}
+                                ${type === 'ecole' ? `(${inst.schoolCity})` : `(${inst.activityDomain})`}
+                            </option>
+                        `).join('');
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+                institutionSelect.innerHTML = '<option value="">Erreur de chargement</option>';
+            }
+        }
     </script>
 </body>
 </html>

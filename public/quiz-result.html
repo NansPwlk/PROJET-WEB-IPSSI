@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzeo - Résultats du Quiz</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body>
+    <div class="dotted-bg"></div>
+    <div class="quiz-container">
+        <div class="quiz-result-content">
+            <h1 id="quizTitle">Résultats du Quiz</h1>
+            
+            <div class="result-summary">
+                <div class="score-container">
+                    <h2 id="scoreText">Votre score</h2>
+                    <div class="score-display">
+                        <span id="userScore" class="score-number">0</span> / 
+                        <span id="totalScore" class="score-number">0</span>
+                    </div>
+                    <div id="scorePercentage" class="score-percentage">0%</div>
+                </div>
+
+                <div class="result-feedback" id="resultFeedback">
+                    <!-- Feedback sera ajouté dynamiquement -->
+                </div>
+            </div>
+
+            <div class="quiz-navigation">
+                <button id="returnToDashboardBtn" class="submit-btn">
+                    Retour au Dashboard
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/public/js/quiz-result.js"></script>
+</body>
+</html>

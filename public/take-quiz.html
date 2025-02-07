@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzeo - Répondre au Quiz</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body>
+    <div class="dotted-bg"></div>
+    <div class="quiz-container">
+        <div class="quiz-header">
+            <h1 id="quizTitle">Chargement du quiz...</h1>
+            <div class="quiz-progress">
+                <span id="currentQuestion">Question 0</span> / 
+                <span id="totalQuestions">0</span>
+            </div>
+        </div>
+
+        <div id="quizContent" class="quiz-content">
+            <!-- Les questions seront chargées dynamiquement ici -->
+        </div>
+
+        <div class="quiz-navigation">
+            <button id="prevQuestionBtn" class="nav-btn" onclick="navigateQuestion(-1)" style="display:none;">
+                Question précédente
+            </button>
+            <button id="nextQuestionBtn" class="nav-btn" onclick="navigateQuestion(1)">
+                Question suivante
+            </button>
+            <button id="submitQuizBtn" class="submit-btn" style="display:none;" onclick="submitQuiz()">
+                Terminer le quiz
+            </button>
+        </div>
+    </div>
+
+    <script src="/public/js/take-quiz.js"></script>
+</body>
+</html>

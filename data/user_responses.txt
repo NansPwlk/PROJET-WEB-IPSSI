@@ -1,0 +1,12 @@
+{"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4e7272d1b4","quiz_title":"sdf","responses":[0,2],"score":1,"total_points":2,"completed_at":"2025-02-07 05:32:35"}
+{"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4e99a60453","quiz_title":"test","responses":[2,2],"score":0,"total_points":2,"completed_at":"2025-02-07 05:32:47"}
+{"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4e99a60453","quiz_title":"test","responses":[2,2],"score":0,"total_points":2,"completed_at":"2025-02-07 05:37:51"}
+{"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4e8ea85893","quiz_title":"TESTO","responses":[0],"score":1,"total_points":1,"completed_at":"2025-02-07 05:38:06"}
+{"user_email":"pawlak.nans@gmail.com","quiz_id":"67a593d0d7ae1","quiz_title":"efzef","responses":[0],"score":0,"total_points":1,"completed_at":"2025-02-07 05:38:22"}
+{"user_email":"pawlak.nans@gmail.com","quiz_id":"67a4f2d4583c5","quiz_title":"dgdfgdfgd","responses":[1],"score":0,"total_points":1,"completed_at":"2025-02-07 05:38:35"}
+{"user_email":"pawlak.nans@gmail.com","quiz_id":"67a587e56e60f","quiz_title":"ert","responses":[2],"score":1,"total_points":1,"completed_at":"2025-02-07 05:38:40"}
+{"user_email":"pawlak.nans@gmail.com","quiz_id":"67a59ef8b1443","quiz_title":"vrai quiz","responses":[2,3],"score":10,"total_points":10,"completed_at":"2025-02-07 05:57:06"}
+{"user_email":"pawlak.nans@gmail.com","quiz_id":"67a59ef8b1443","quiz_title":"vrai quiz","responses":[2,3],"score":10,"total_points":10,"completed_at":"2025-02-07 05:58:17"}
+{"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5a175ee746","quiz_title":"test encore","responses":[0,0],"score":1,"total_points":2,"completed_at":"2025-02-07 06:00:56"}
+{"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5a2a7578dc","quiz_title":"encoreet encoer","responses":[3,0,3],"score":2,"total_points":3,"completed_at":"2025-02-07 06:05:55"}
+{"user_email":"pawlak.nans@gmail.com","quiz_id":"67a5a33f78132","quiz_title":"jh","responses":[0,0],"score":1,"total_points":2,"completed_at":"2025-02-07 06:08:58"}
