@@ -58,19 +58,22 @@ document.addEventListener('DOMContentLoaded', function() {
         `).join('');
     }
 
-    // Chargement des quiz
     async function loadQuizzes() {
-        const response = await fetch('/admin/get-quizzes.php');
+        const response = await fetch('/php/admin/get-quizzes.php');
         const quizzes = await response.json();
         const quizzesList = document.getElementById('quizzes-list');
         
         quizzesList.innerHTML = quizzes.map(quiz => `
             <tr>
                 <td>${quiz.title}</td>
-                <td>${quiz.creator_name}</td>
-                <td>${quiz.type}</td>
-                <td>${quiz.status}</td>
-                <td>${quiz.responses_count}</td>
+                <td>${quiz.creator_name}<br><small>${quiz.school_name || ''}</small></td>
+                <td>${quiz.questions.length} questions</td>
+                <td>
+                    <span class="status-badge ${getStatusClass(quiz.status)}">
+                        ${getStatusText(quiz.status)}
+                    </span>
+                </td>
+                <td>${quiz.responses ? quiz.responses.length : 0} réponses</td>
                 <td>
                     <button 
                         class="action-button ${quiz.isActive ? 'deactivate' : 'activate'}"
@@ -81,6 +84,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 </td>
             </tr>
         `).join('');
+    }
+    
+    
+    function getStatusClass(status) {
+        switch(status) {
+            case 'draft': return 'status-draft';
+            case 'active': return 'status-active';
+            case 'completed': return 'status-completed';
+            default: return '';
+        }
+    }
+    
+    function getStatusText(status) {
+        switch(status) {
+            case 'draft': return 'Brouillon';
+            case 'active': return 'En cours';
+            case 'completed': return 'Terminé';
+            default: return status;
+        }
     }
 
     // Chargement des utilisateurs connectés

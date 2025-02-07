@@ -1,45 +1,56 @@
 <?php
 session_start();
+error_log('Session démarrée dans get_quizzes.php');
+header('Content-Type: application/json');
 
-// Vérifier si l'utilisateur est connecté et est admin
+// Debug de la session
+error_log('Session user: ' . print_r($_SESSION, true));
+
+// Vérifier si l'utilisateur est admin
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-    header('HTTP/1.1 403 Forbidden');
+    error_log('Accès refusé - Role: ' . ($_SESSION['user']['role'] ?? 'non défini'));
+    http_response_code(403);
     echo json_encode(['error' => 'Accès non autorisé']);
     exit;
 }
 
-header('Content-Type: application/json');
-
-// Chemin vers le fichier quizzes.txt
 $quizzesFile = __DIR__ . '/../../data/quizzes.txt';
+error_log('Chemin du fichier: ' . $quizzesFile);
+
+if (!file_exists($quizzesFile)) {
+    error_log('Fichier quizzes.txt non trouvé');
+    echo json_encode([]);
+    exit;
+}
 
 try {
-    // Vérifier si le fichier existe
-    if (!file_exists($quizzesFile)) {
-        // Si le fichier n'existe pas, renvoyer un tableau vide
-        echo json_encode([]);
-        exit;
-    }
-
-    // Lire le fichier
-    $quizzes = file($quizzesFile, FILE_IGNORE_NEW_LINES);
-    $quizData = [];
-
-    foreach ($quizzes as $quiz) {
-        $quizObj = json_decode($quiz, true);
-        if ($quizObj) {
-            $quizData[] = $quizObj;
+    $quizzes = [];
+    $lines = file($quizzesFile, FILE_IGNORE_NEW_LINES);
+    error_log('Contenu du fichier: ' . print_r($lines, true));
+    
+    foreach ($lines as $line) {
+        if (!empty($line)) {
+            $quiz = json_decode($line, true);
+            if ($quiz) {
+                $quizzes[] = [
+                    'id' => $quiz['id'],
+                    'title' => $quiz['title'],
+                    'creator_name' => $quiz['creator_name'],
+                    'school_name' => $quiz['school_name'] ?? '',
+                    'status' => $quiz['status'],
+                    'questions' => $quiz['questions'] ?? [],
+                    'responses' => $quiz['responses'] ?? [],
+                    'created_at' => $quiz['created_at'],
+                    'isActive' => $quiz['isActive'] ?? true
+                ];
+            }
         }
     }
 
-    // Trier par date de création (du plus récent au plus ancien)
-    usort($quizData, function($a, $b) {
-        return strtotime($b['created_at']) - strtotime($a['created_at']);
-    });
-
-    echo json_encode($quizData);
-
+    error_log('Quiz préparés: ' . print_r($quizzes, true));
+    echo json_encode($quizzes);
 } catch (Exception $e) {
-    header('HTTP/1.1 500 Internal Server Error');
-    echo json_encode(['error' => $e->getMessage()]);
+    error_log('Erreur dans get_quizzes.php: ' . $e->getMessage());
+    http_response_code(500);
+    echo json_encode(['error' => 'Erreur lors de la récupération des quiz']);
 }
